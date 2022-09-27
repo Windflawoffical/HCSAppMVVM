@@ -1,6 +1,5 @@
 package com.example.hcsappmvvm.view;
 
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
@@ -9,7 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.hcsappmvvm.AuthListener;
+import com.example.hcsappmvvm.interfaces.AuthListener;
 import com.example.hcsappmvvm.R;
 import com.example.hcsappmvvm.databinding.ActivitySignupBinding;
 import com.example.hcsappmvvm.viewmodel.SignUpViewModel;
@@ -33,9 +32,9 @@ public class SignupActivity extends AppCompatActivity implements AuthListener {
 
     @Override
     public void onSuccess() {
-        Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
     }
 
     @Override

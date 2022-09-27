@@ -1,4 +1,4 @@
-package com.example.hcsappmvvm;
+package com.example.hcsappmvvm.interfaces;
 
 public interface AuthListener {
     void onStarted();

@@ -1,16 +1,12 @@
 package com.example.hcsappmvvm.viewmodel;
 
-import android.app.Application;
-import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.ViewModel;
 
-import com.example.hcsappmvvm.AuthListener;
+import com.example.hcsappmvvm.interfaces.AuthListener;
 
 public class SignUpViewModel extends ViewModel {
 

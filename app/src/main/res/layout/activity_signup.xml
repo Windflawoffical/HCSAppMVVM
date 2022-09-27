@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:padding="15dp"
-            android:background="@drawable/shapeemailandpassword"
+            android:background="@drawable/shapetransparent"
             android:drawableLeft="@drawable/ic_baseline_person_24"
             android:drawablePadding="10dp"
             android:hint="Email"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:padding="15dp"
-            android:background="@drawable/shapeemailandpassword"
+            android:background="@drawable/shapetransparent"
             android:drawableLeft="@drawable/ic_baseline_smartphone_24"
             android:drawablePadding="10dp"
             android:hint="Phone number (+7)"
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:padding="15dp"
-            android:background="@drawable/shapeemailandpassword"
+            android:background="@drawable/shapetransparent"
             android:drawableLeft="@drawable/ic_baseline_lock_24"
             android:drawablePadding="10dp"
             android:hint="Password"
@@ -73,7 +73,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="0dp"
-            android:background="@drawable/shapesignup"
+            android:background="@drawable/shapestyle"
             android:textColor="@color/white" />
 
 
