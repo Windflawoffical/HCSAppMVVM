@@ -43,7 +43,6 @@ public class LoginActivity extends AppCompatActivity implements AuthListener {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-
     public void onTextClick(View view){
         TextView textView = (TextView)findViewById(R.id.textView);
         textView.setOnClickListener(new View.OnClickListener() {

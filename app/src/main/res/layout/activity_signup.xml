@@ -42,7 +42,7 @@
             android:background="@drawable/shapeemailandpassword"
             android:drawableLeft="@drawable/ic_baseline_smartphone_24"
             android:drawablePadding="10dp"
-            android:hint="Phone number"
+            android:hint="Phone number (+7)"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textColorHighlight="@color/white"/>

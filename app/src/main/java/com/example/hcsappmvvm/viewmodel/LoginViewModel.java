@@ -2,6 +2,8 @@ package com.example.hcsappmvvm.viewmodel;
 
 
 import android.content.Intent;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.TextView;
 
@@ -23,14 +25,13 @@ public class LoginViewModel extends ViewModel  {
     public AuthListener authListener = null;
 
     public void onLoginButtonClick(View view){
-        authListener.onStarted();
-        if(email.isEmpty() || password.isEmpty()){
-            //failure
-            authListener.onFailure("Invalid email or password");
+        if(!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches() && password.length() > 5){
+            //success
+            authListener.onSuccess();
             return;
         }
-        //success
-        authListener.onSuccess();
+        //failure
+        authListener.onFailure("Invalid email or password");
     }
 
 }
