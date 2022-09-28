@@ -25,7 +25,7 @@
             android:layout_margin="10dp"
             android:padding="15dp"
             android:background="@drawable/shapetransparent"
-            android:drawableLeft="@drawable/ic_baseline_person_24"
+            android:drawableLeft="@drawable/ic_baseline_email_24"
             android:drawablePadding="10dp"
             android:hint="Email"
             android:textColor="@color/white"

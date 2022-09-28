@@ -7,10 +7,11 @@ import androidx.lifecycle.ViewModel;
 import com.example.hcsappmvvm.interfaces.RepositoryTasks;
 import com.example.hcsappmvvm.model.User;
 
-public class AccViewModel extends ViewModel {
+public class ChangeDataHelperViewModel extends ViewModel {
+
     public RepositoryTasks repositoryTasks = null;
 
-    public void onChangeDataButtonClicked(View view){
+    public void onSaveButtonClick(View view){
         repositoryTasks.ChangeData();
     }
 }
