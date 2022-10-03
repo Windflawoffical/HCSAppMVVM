@@ -7,5 +7,5 @@ import com.example.hcsappmvvm.model.Appeal;
 import java.util.List;
 
 public interface AppealsList {
-    <T extends Appeal>LiveData<List<T>> getAppealsList();
+    <T extends Appeal>LiveData<List<T>> getappealsList();
 }

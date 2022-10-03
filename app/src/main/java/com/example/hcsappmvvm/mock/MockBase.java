@@ -25,8 +25,9 @@ public class MockBase implements AddAppeal, AppealsList {
         data.setValue(list);
     }
 
+
     @Override
-    public <T extends Appeal> LiveData<List<T>> getAppealsList() {
+    public <T extends Appeal> LiveData<List<T>> getappealsList() {
         return (MutableLiveData) data;
     }
 }
