@@ -1,11 +1,9 @@
 package com.example.hcsappmvvm.view;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -13,13 +11,13 @@ import android.widget.Toast;
 
 import com.example.hcsappmvvm.R;
 import com.example.hcsappmvvm.databinding.ActivityChangeDataHelperBinding;
-import com.example.hcsappmvvm.interfaces.RepositoryTasks;
+import com.example.hcsappmvvm.interfaces.ProfileListener;
 import com.example.hcsappmvvm.model.User;
 import com.example.hcsappmvvm.viewmodel.ChangeDataHelperViewModel;
 
 import java.io.Serializable;
 
-public class ChangeDataHelperActivity extends AppCompatActivity implements RepositoryTasks {
+public class ChangeDataHelperActivity extends AppCompatActivity implements ProfileListener {
     ActivityChangeDataHelperBinding activityChangeDataHelperBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +25,7 @@ public class ChangeDataHelperActivity extends AppCompatActivity implements Repos
         activityChangeDataHelperBinding = DataBindingUtil.setContentView(this, R.layout.activity_change_data_helper);
         ChangeDataHelperViewModel changeDataHelperViewModel = new ViewModelProvider(this).get(ChangeDataHelperViewModel.class);
         activityChangeDataHelperBinding.setChangeDataHelperViewModel(changeDataHelperViewModel);
-        changeDataHelperViewModel.repositoryTasks = this;
+        changeDataHelperViewModel.profileListener = this;
 
     }
 

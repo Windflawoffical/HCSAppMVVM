@@ -1,11 +1,9 @@
 package com.example.hcsappmvvm.view;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,11 +12,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hcsappmvvm.R;
 import com.example.hcsappmvvm.databinding.ActivityAccBinding;
-import com.example.hcsappmvvm.interfaces.RepositoryTasks;
-import com.example.hcsappmvvm.model.User;
+import com.example.hcsappmvvm.interfaces.ProfileListener;
 import com.example.hcsappmvvm.viewmodel.AccViewModel;
 
-public class AccActivity extends AppCompatActivity implements RepositoryTasks {
+public class AccActivity extends AppCompatActivity implements ProfileListener {
     ActivityAccBinding activityAccBinding;
 
     @Override
@@ -27,7 +24,7 @@ public class AccActivity extends AppCompatActivity implements RepositoryTasks {
         activityAccBinding = DataBindingUtil.setContentView(this, R.layout.activity_acc);
         AccViewModel accViewModel = new ViewModelProvider(this).get(AccViewModel.class);
         activityAccBinding.setAccViewModel(accViewModel);
-        accViewModel.repositoryTasks = this;
+        accViewModel.profileListener = this;
     }
 
     @Override

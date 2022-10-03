@@ -4,13 +4,12 @@ import android.view.View;
 
 import androidx.lifecycle.ViewModel;
 
-import com.example.hcsappmvvm.interfaces.RepositoryTasks;
-import com.example.hcsappmvvm.model.User;
+import com.example.hcsappmvvm.interfaces.ProfileListener;
 
 public class AccViewModel extends ViewModel {
-    public RepositoryTasks repositoryTasks = null;
+    public ProfileListener profileListener = null;
 
     public void onChangeDataButtonClicked(View view){
-        repositoryTasks.ChangeData();
+        profileListener.ChangeData();
     }
 }
