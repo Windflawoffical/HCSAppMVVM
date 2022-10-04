@@ -32,11 +32,6 @@ public class HomeActivity extends AppCompatActivity implements HomeListener {
         Toast.makeText(this, "Method is working", Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onCounters() {
-        Intent countersintent = new Intent(this, CountersActivity.class);
-        startActivity(countersintent);
-    }
 
     @Override
     public void onAppeals() {
