@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.hcsappmvvm.Controls.AppealsControl;
 import com.example.hcsappmvvm.R;
 import com.example.hcsappmvvm.interfaces.AddAppeal;
 import com.example.hcsappmvvm.model.Appeal;
@@ -43,6 +44,7 @@ public class AddAppealActivity extends AppCompatActivity implements AddAppeal {
     public <T extends Appeal> void addAppeal(Appeal appeal) {
         List<Appeal> appeals = new ArrayList<>();
         appeals.add(appeal);
+        AppealsControl appealsControl = new AppealsControl(this, appeal.getAppealTitle(), appeal.getAppealDescription());
         Intent intent = new Intent();
         setResult(RESULT_OK,intent);
         finish();
