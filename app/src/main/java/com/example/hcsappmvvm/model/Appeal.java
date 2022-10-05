@@ -3,12 +3,10 @@ package com.example.hcsappmvvm.model;
 import java.util.List;
 
 public class Appeal {
-    public String id;
     public String AppealTitle;
     public String AppealDescription;
 
-    public Appeal(String id, String appealTitle, String appealDescription) {
-        this.id = id;
+    public Appeal(String appealTitle, String appealDescription) {
         this.AppealTitle = appealTitle;
         this.AppealDescription = appealDescription;
     }
