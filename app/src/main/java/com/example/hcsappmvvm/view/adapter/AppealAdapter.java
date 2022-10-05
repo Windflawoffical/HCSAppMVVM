@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hcsappmvvm.R;
 import com.example.hcsappmvvm.Room.AppealRoom;
+import com.example.hcsappmvvm.model.Appeal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,10 @@ public class AppealAdapter extends RecyclerView.Adapter<AppealAdapter.AppealHold
     public void setAppealRooms(List<AppealRoom> appealRooms){
         this.appealRooms = appealRooms;
         notifyDataSetChanged();
+    }
+
+    public AppealRoom getAppealAt(int position){
+        return appealRooms.get(position);
     }
 
     class AppealHolder extends RecyclerView.ViewHolder {
