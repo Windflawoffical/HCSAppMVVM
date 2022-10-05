@@ -28,10 +28,6 @@ public class LoginActivity extends AppCompatActivity implements AuthListener {
         loginViewModel.authListener = this;
     }
 
-    @Override
-    public void onStarted() {
-        Toast.makeText(this, "Login started", Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     public void onSuccess() {

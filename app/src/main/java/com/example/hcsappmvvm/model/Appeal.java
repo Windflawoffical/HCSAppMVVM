@@ -28,5 +28,4 @@ public class Appeal {
     public void setAppealDescription(String appealDescription) {
         this.AppealDescription = appealDescription;
     }
-
 }

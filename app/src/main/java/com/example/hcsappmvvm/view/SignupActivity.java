@@ -26,11 +26,6 @@ public class SignupActivity extends AppCompatActivity implements AuthListener {
     }
 
     @Override
-    public void onStarted() {
-        Toast.makeText(this, "Registration Started", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     public void onSuccess() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
