@@ -43,38 +43,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:onClick="@{(view) -> Homeviewmodel.onCountersButtonClick(view)}"
-        android:id="@+id/Counters"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="310dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/shapestyle"
-        android:hint="Счётчики"
-        android:padding="10dp"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </Button>
-
-    <Button
-        android:onClick="@{(view) -> Homeviewmodel.onAppealsButtonClick(view)}"
         android:id="@+id/appeals"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="370dp"
+        android:layout_marginTop="308dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/shapestyle"
         android:hint="Написать жалобу"
+        android:onClick="@{(view) -> Homeviewmodel.onAppealsButtonClick(view)}"
         android:padding="10dp"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
