@@ -11,20 +11,15 @@ public class AppealRoom extends Appeal{
     private int id;
     public String Title;
     public String Description;
-    public int priority;
 
-    public AppealRoom(String title, String description, int priority) {
+    public AppealRoom(String title, String description) {
         this.Title = title;
         this.Description = description;
-        this.priority = priority;
     }
 
     public AppealRoom() {
     }
 
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
 
     public void setTitle(String title) {
         this.Title = title;
@@ -50,7 +45,4 @@ public class AppealRoom extends Appeal{
         return Description;
     }
 
-    public int getPriority() {
-        return priority;
-    }
 }

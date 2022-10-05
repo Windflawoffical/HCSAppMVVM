@@ -20,6 +20,7 @@ import com.example.hcsappmvvm.interfaces.AddAppeal;
 import com.example.hcsappmvvm.model.Appeal;
 import com.example.hcsappmvvm.view.adapter.AppealAdapter;
 import com.example.hcsappmvvm.viewmodel.AppealsViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class AppealsActivity extends AppCompatActivity {
         });
 
 
-        ImageButton button = (ImageButton) findViewById(R.id.addAppeal);
+        FloatingActionButton button = (FloatingActionButton) findViewById(R.id.addAppeal);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,10 +62,16 @@ public class AppealsActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==1){
-            if(resultCode==RESULT_OK){
-                Toast.makeText(this,"Жалоба создана", Toast.LENGTH_SHORT).show();
-            }
+        if(requestCode == 1 && resultCode == RESULT_OK){
+            String title = data.getStringExtra("AppealTitle");
+            String description = data.getStringExtra("AppealDescription");
+
+            AppealRoom appealRoom = new AppealRoom(title, description);
+            appealsViewModel.insert(appealRoom);
+
+            Toast.makeText(getApplicationContext(), "Appeal saved", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Appeal not saved", Toast.LENGTH_SHORT).show();
         }
     }
 }

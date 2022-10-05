@@ -31,7 +31,6 @@ public class AppealAdapter extends RecyclerView.Adapter<AppealAdapter.AppealHold
         AppealRoom currentAppeal = appealRooms.get(position);
         holder.textViewTitle.setText(currentAppeal.getTitle());
         holder.textViewDescription.setText(currentAppeal.getDescription());
-        holder.textViewPriority.setText(String.valueOf(currentAppeal.getPriority()));
     }
 
     @Override
@@ -47,13 +46,11 @@ public class AppealAdapter extends RecyclerView.Adapter<AppealAdapter.AppealHold
     class AppealHolder extends RecyclerView.ViewHolder {
         private TextView textViewTitle;
         private TextView textViewDescription;
-        private TextView textViewPriority;
 
         public AppealHolder(View view){
             super(view);
             textViewTitle = view.findViewById(R.id.text_view_title);
             textViewDescription = view.findViewById(R.id.text_view_description);
-            textViewPriority = view.findViewById(R.id.text_view_priority);
         }
     }
 }

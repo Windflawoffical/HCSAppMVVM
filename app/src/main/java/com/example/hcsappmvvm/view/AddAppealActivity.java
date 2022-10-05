@@ -14,36 +14,46 @@ import android.widget.Toast;
 import com.example.hcsappmvvm.R;
 import com.example.hcsappmvvm.interfaces.AddAppeal;
 import com.example.hcsappmvvm.model.Appeal;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddAppealActivity extends AppCompatActivity implements AddAppeal {
+public class AddAppealActivity extends AppCompatActivity {
+    private EditText editTextTitle;
+    private EditText editTextDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_appeal);
-        Button button = (Button) findViewById(R.id.confirmBtn);
-        EditText title = (EditText) findViewById(R.id.TitleOfAppeal);
-        EditText description = (EditText)findViewById(R.id.AppealDescription);
-        Appeal appeal = new Appeal();
-        appeal.setAppealTitle(title.toString());
-        appeal.setAppealDescription(description.toString());
+
+        editTextTitle = findViewById(R.id.TitleOfAppeal);
+        editTextDescription= findViewById(R.id.AppealDescription);
+        Button button = findViewById(R.id.confirmBtn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addAppeal(appeal);
+                saveAppeal();
             }
         });
+
     }
 
-    @Override
-    public <T extends Appeal> void addAppeal(Appeal appeal) {
-        List<Appeal> appeals = new ArrayList<>();
-        appeals.add(appeal);
-        Intent intent = new Intent();
-        setResult(RESULT_OK,intent);
-        finish();
+    private void saveAppeal(){
+        String title = editTextTitle.getText().toString();
+        String description = editTextDescription.getText().toString();
+        if(title.trim().isEmpty() || description.trim().isEmpty()){
+            Toast.makeText(getApplicationContext(),"Please enter title and description", Toast.LENGTH_SHORT).show();
+            return;
         }
+        Intent data = new Intent();
+        data.putExtra("AppealTitle",title);
+        data.putExtra("AppealDescription",description);
+        setResult(RESULT_OK,data);
+        finish();
+    }
+
+
+
 }

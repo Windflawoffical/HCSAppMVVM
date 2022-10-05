@@ -41,8 +41,8 @@ public abstract class AppealDatabase extends RoomDatabase {
         }
         @Override
         protected Void doInBackground(Void... voids) {
-            appealDAO.insertAppeal(new AppealRoom("Title 1", "Description 1", 1));
-            appealDAO.insertAppeal(new AppealRoom("Title 2", "Description 2", 2));
+            appealDAO.insertAppeal(new AppealRoom("Title 1", "Description 1"));
+            appealDAO.insertAppeal(new AppealRoom("Title 2", "Description 2"));
             return null;
         }
     }
