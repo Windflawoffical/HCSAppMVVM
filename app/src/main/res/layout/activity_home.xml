@@ -15,11 +15,10 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="223dp"
-        android:layout_height="0dp"
+        android:layout_width="308dp"
+        android:layout_height="229dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/FullName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -61,49 +60,5 @@
 
     </Button>
 
-    <TextView
-        android:id="@+id/FullName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
-        android:hint="ФИО Пользователя"
-        android:textColorHint="@color/white"
-        android:textSize="20sp"
-        android:typeface="serif"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/Phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-    <TextView
-        android:id="@+id/Phone"
-        android:typeface="serif"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
-        android:hint="Мобильный телефон пользователя"
-        android:textColorHint="@color/white"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/Address"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FullName" />
-
-    <TextView
-        android:id="@+id/Address"
-        android:typeface="serif"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="487dp"
-        android:hint="Адрес проживания пользователя"
-        android:textColorHint="@color/white"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Phone" />
   </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

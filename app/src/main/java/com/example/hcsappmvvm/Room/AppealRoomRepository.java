@@ -12,6 +12,7 @@ import java.util.List;
 public class AppealRoomRepository {
     private AppealDAO appealDAO;
     private LiveData<List<AppealRoom>> allAppeals;
+
     public AppealRoomRepository(Application application) {
         AppealDatabase database = AppealDatabase.getInstance(application);
         appealDAO = database.appealDAO();

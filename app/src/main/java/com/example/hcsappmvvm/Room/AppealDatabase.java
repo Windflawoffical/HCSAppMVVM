@@ -22,27 +22,8 @@ public abstract class AppealDatabase extends RoomDatabase {
         if(instance == null){
             instance = Room.databaseBuilder(context.getApplicationContext(), AppealDatabase.class, "appeal_database")
                     .fallbackToDestructiveMigration()
-                    .addCallback(roomcallback)
                     .build();
         }
         return instance;
     }
-    private static RoomDatabase.Callback roomcallback = new RoomDatabase.Callback(){
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-            new PopulateDbAsyncTask(instance).execute();
-        }
-    };
-    private static class PopulateDbAsyncTask extends AsyncTask<Void,Void,Void>{
-        private AppealDAO appealDAO;
-        private PopulateDbAsyncTask(AppealDatabase database){
-            appealDAO = database.appealDAO();
-        }
-        @Override
-        protected Void doInBackground(Void... voids) {
-            return null;
-        }
-    }
-
 }

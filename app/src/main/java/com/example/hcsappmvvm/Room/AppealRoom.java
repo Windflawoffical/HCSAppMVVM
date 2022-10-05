@@ -20,7 +20,6 @@ public class AppealRoom extends Appeal{
     public AppealRoom() {
     }
 
-
     public void setTitle(String title) {
         this.Title = title;
     }
@@ -44,5 +43,4 @@ public class AppealRoom extends Appeal{
     public String getDescription() {
         return Description;
     }
-
 }
