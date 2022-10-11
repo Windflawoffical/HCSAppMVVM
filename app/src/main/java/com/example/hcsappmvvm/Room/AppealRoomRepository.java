@@ -29,6 +29,11 @@ public class AppealRoomRepository {
             appealDAO.deleteAppeal(appealRoom);
         });
     }
+    public void update(AppealRoom appealRoom){
+        AppealDatabase.databaseWriteExecutor.execute(()->{
+            appealDAO.updateAppeal(appealRoom);
+        });
+    }
     public LiveData<List<AppealRoom>> getAllAppeals() {
         return allAppeals;
     }

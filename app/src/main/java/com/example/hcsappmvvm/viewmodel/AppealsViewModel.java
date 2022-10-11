@@ -30,6 +30,9 @@ public class AppealsViewModel extends AndroidViewModel {
     public void insert(AppealRoom appealRoom){
         repository.insert(appealRoom);
     }
+    public void update(AppealRoom appealRoom){
+        repository.update(appealRoom);
+    }
     public void delete(AppealRoom appealRoom){
         repository.delete(appealRoom);
     }

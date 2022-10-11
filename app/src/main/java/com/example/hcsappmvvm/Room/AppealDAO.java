@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.hcsappmvvm.model.Appeal;
 
@@ -21,5 +22,8 @@ public interface AppealDAO {
 
     @Query("SELECT * FROM appeal_table")
     LiveData<List<AppealRoom>> getAllAppeals();
+
+    @Update
+    void updateAppeal(AppealRoom appealRoom);
 
 }

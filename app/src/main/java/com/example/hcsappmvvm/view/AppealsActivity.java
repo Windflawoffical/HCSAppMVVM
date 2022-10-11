@@ -27,6 +27,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
 public class AppealsActivity extends AppCompatActivity {
+    public static final int ADD_NOTE_REQUEST = 1;
+    public static final int EDIT_NOTE_REQUEST = 2;
 
     private AppealsViewModel appealsViewModel;
 
@@ -64,13 +66,24 @@ public class AppealsActivity extends AppCompatActivity {
             }
         }).attachToRecyclerView(recyclerView);
 
+        appealAdapter.setOnItemClickListener(new AppealAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(AppealRoom appealRoom) {
+                Intent intent = new Intent(getApplicationContext(), AddAppealActivity.class);
+                intent.putExtra(AddAppealActivity.EXTRA_ID,appealRoom.getId());
+                intent.putExtra(AddAppealActivity.EXTRA_TITLE, appealRoom.getTitle());
+                intent.putExtra(AddAppealActivity.EXTRA_DESCRIPTION, appealRoom.getDescription());
+                startActivityForResult(intent, EDIT_NOTE_REQUEST);
+            }
+        });
+
 
         FloatingActionButton button = (FloatingActionButton) findViewById(R.id.addAppeal);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), AddAppealActivity.class);
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, ADD_NOTE_REQUEST);
             }
         });
 
@@ -78,14 +91,26 @@ public class AppealsActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1 && resultCode == RESULT_OK){
-            String title = data.getStringExtra("AppealTitle");
-            String description = data.getStringExtra("AppealDescription");
+        if(requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK){
+            String title = data.getStringExtra(AddAppealActivity.EXTRA_TITLE);
+            String description = data.getStringExtra(AddAppealActivity.EXTRA_DESCRIPTION);
 
             AppealRoom appealRoom = new AppealRoom(title, description);
             appealsViewModel.insert(appealRoom);
 
             Toast.makeText(getApplicationContext(), "Appeal saved", Toast.LENGTH_SHORT).show();
+        } else if(requestCode == EDIT_NOTE_REQUEST && resultCode == RESULT_OK){
+            int id = data.getIntExtra(AddAppealActivity.EXTRA_ID,-1);
+            if(id == -1){
+                Toast.makeText(this,"Appeal can not be updated",Toast.LENGTH_SHORT).show();
+            }
+            String title = data.getStringExtra(AddAppealActivity.EXTRA_TITLE);
+            String description = data.getStringExtra(AddAppealActivity.EXTRA_DESCRIPTION);
+
+            AppealRoom appealRoom = new AppealRoom(title, description);
+            appealRoom.setId(id);
+            appealsViewModel.update(appealRoom);
+            Toast.makeText(getApplicationContext(), "Appeal updated", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getApplicationContext(), "Appeal not saved", Toast.LENGTH_SHORT).show();
         }

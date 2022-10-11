@@ -18,6 +18,7 @@ import java.util.List;
 public class AppealAdapter extends RecyclerView.Adapter<AppealAdapter.AppealHolder> {
 
     private List<AppealRoom> appealRooms = new ArrayList<>();
+    private OnItemClickListener listener;
 
     @NonNull
     @Override
@@ -56,6 +57,24 @@ public class AppealAdapter extends RecyclerView.Adapter<AppealAdapter.AppealHold
             super(view);
             textViewTitle = view.findViewById(R.id.text_view_title);
             textViewDescription = view.findViewById(R.id.text_view_description);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if(listener != null && position != RecyclerView.NO_POSITION){
+                        listener.onItemClick(appealRooms.get(position));
+                    }
+
+                }
+            });
         }
+    }
+    public interface OnItemClickListener {
+        void onItemClick(AppealRoom appealRoom);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
+
     }
 }
