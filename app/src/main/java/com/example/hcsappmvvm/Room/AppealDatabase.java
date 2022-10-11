@@ -11,10 +11,18 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.hcsappmvvm.model.Appeal;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 @Database(entities = {AppealRoom.class},version = 1)
 public abstract class AppealDatabase extends RoomDatabase {
 
     private static AppealDatabase instance;
+
+    private static final int NUMBER_OF_THREADS = 4;
+
+    public static final ExecutorService databaseWriteExecutor =
+            Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     public abstract AppealDAO appealDAO();
 

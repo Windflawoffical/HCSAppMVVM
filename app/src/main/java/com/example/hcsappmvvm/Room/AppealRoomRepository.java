@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
+import com.example.hcsappmvvm.Room.AppealDatabase;
 
 import com.example.hcsappmvvm.model.Appeal;
 
@@ -19,37 +20,18 @@ public class AppealRoomRepository {
         allAppeals = appealDAO.getAllAppeals();
     }
     public void insert(AppealRoom appealRoom) {
-        new InsertAppealAsyncTask(appealDAO).execute(appealRoom);
+        AppealDatabase.databaseWriteExecutor.execute(()->{
+            appealDAO.insertAppeal(appealRoom);
+        });
     }
     public void delete(AppealRoom appealRoom) {
-        new DeleteAppealAsyncTask(appealDAO).execute(appealRoom);
+        AppealDatabase.databaseWriteExecutor.execute(()->{
+            appealDAO.deleteAppeal(appealRoom);
+        });
     }
     public LiveData<List<AppealRoom>> getAllAppeals() {
         return allAppeals;
     }
-    private static class InsertAppealAsyncTask extends AsyncTask<AppealRoom, Void, Void> {
-        private AppealDAO appealDAO;
 
-        private InsertAppealAsyncTask(AppealDAO appealDAO) {
-            this.appealDAO = appealDAO;
-        }
-        @Override
-        protected Void doInBackground(AppealRoom... appealRooms) {
-            appealDAO.insertAppeal(appealRooms[0]);
-            return null;
-        }
-    }
-    private static class DeleteAppealAsyncTask extends AsyncTask<AppealRoom, Void, Void> {
-        private AppealDAO appealDAO;
-
-        private DeleteAppealAsyncTask(AppealDAO appealDAO) {
-            this.appealDAO = appealDAO;
-        }
-        @Override
-        protected Void doInBackground(AppealRoom... appealsRooms) {
-            appealDAO.deleteAppeal(appealsRooms[0]);
-            return null;
-        }
-    }
 }
 
