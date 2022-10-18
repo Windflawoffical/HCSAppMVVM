@@ -30,5 +30,13 @@
 
         </TextView>
 
+        <ImageView
+            android:id="@+id/imageViewList"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/text_view_description">
+        </ImageView>
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

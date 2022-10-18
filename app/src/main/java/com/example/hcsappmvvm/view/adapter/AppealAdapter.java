@@ -1,8 +1,10 @@
 package com.example.hcsappmvvm.view.adapter;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hcsappmvvm.R;
 import com.example.hcsappmvvm.Room.AppealRoom;
-import com.example.hcsappmvvm.model.Appeal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,7 @@ public class AppealAdapter extends RecyclerView.Adapter<AppealAdapter.AppealHold
         AppealRoom currentAppeal = appealRooms.get(position);
         holder.textViewTitle.setText(currentAppeal.getTitle());
         holder.textViewDescription.setText(currentAppeal.getDescription());
+        holder.imageView.setImageURI(Uri.parse(currentAppeal.getImage()));
     }
 
     @Override
@@ -52,11 +54,13 @@ public class AppealAdapter extends RecyclerView.Adapter<AppealAdapter.AppealHold
     class AppealHolder extends RecyclerView.ViewHolder {
         private TextView textViewTitle;
         private TextView textViewDescription;
+        private ImageView imageView;
 
         public AppealHolder(View view){
             super(view);
             textViewTitle = view.findViewById(R.id.text_view_title);
             textViewDescription = view.findViewById(R.id.text_view_description);
+            imageView = view.findViewById(R.id.imageViewList);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

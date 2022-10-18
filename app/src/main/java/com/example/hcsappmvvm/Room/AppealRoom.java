@@ -11,10 +11,12 @@ public class AppealRoom extends Appeal{
     private int id;
     public String Title;
     public String Description;
+    public String image;
 
-    public AppealRoom(String title, String description) {
+    public AppealRoom(String title, String description, String image) {
         this.Title = title;
         this.Description = description;
+        this.image = image;
     }
 
     public AppealRoom() {
@@ -42,5 +44,13 @@ public class AppealRoom extends Appeal{
 
     public String getDescription() {
         return Description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

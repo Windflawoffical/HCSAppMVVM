@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -19,8 +19,7 @@
         android:textColorHint="@color/white"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/titleEdit" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
     <EditText
@@ -32,19 +31,32 @@
         android:gravity="fill_vertical"
         android:hint="Описание жалобы"
         android:textColorHint="@color/white"
+        android:layout_below="@+id/TitleOfAppeal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/Image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/AppealDescription"
+        android:layout_centerInParent="true"></ImageView>
+
+    <Button
+        android:id="@+id/addimage"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Добавить фотографию"
+        android:layout_below="@+id/Image"
+        android:layout_centerInParent="true"/>
+
     <Button
         android:id="@+id/confirmBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Создать жалобу"
-        app:layout_constraintBaseline_toBaselineOf="@+id/itemName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:text="Сохранить жалобу"
+        android:layout_below="@+id/addimage"/>
 
-</LinearLayout>
+</RelativeLayout>

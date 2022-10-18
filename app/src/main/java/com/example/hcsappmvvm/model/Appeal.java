@@ -5,10 +5,12 @@ import java.util.List;
 public class Appeal {
     public String AppealTitle;
     public String AppealDescription;
+    public String image;
 
-    public Appeal(String appealTitle, String appealDescription) {
+    public Appeal(String appealTitle, String appealDescription,String image) {
         this.AppealTitle = appealTitle;
         this.AppealDescription = appealDescription;
+        this.image = image;
     }
 
     public Appeal() {
@@ -27,5 +29,13 @@ public class Appeal {
     }
     public void setAppealDescription(String appealDescription) {
         this.AppealDescription = appealDescription;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

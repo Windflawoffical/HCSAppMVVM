@@ -3,7 +3,6 @@ package com.example.hcsappmvvm.view;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,20 +10,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
+
 import android.widget.Toast;
 
 import com.example.hcsappmvvm.R;
 import com.example.hcsappmvvm.Room.AppealRoom;
-import com.example.hcsappmvvm.interfaces.AddAppeal;
-import com.example.hcsappmvvm.model.Appeal;
 import com.example.hcsappmvvm.view.adapter.AppealAdapter;
 import com.example.hcsappmvvm.viewmodel.AppealsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.List;
 
 public class AppealsActivity extends AppCompatActivity {
     public static final int ADD_NOTE_REQUEST = 1;
@@ -45,12 +39,7 @@ public class AppealsActivity extends AppCompatActivity {
         recyclerView.setAdapter(appealAdapter);
 
         appealsViewModel = new ViewModelProvider(this).get(AppealsViewModel.class);
-        appealsViewModel.getAllAppeals().observe(this, new Observer<List<AppealRoom>>() {
-            @Override
-            public void onChanged(List<AppealRoom> appealRooms) {
-                appealAdapter.setAppealRooms(appealRooms);
-            }
-        });
+        appealsViewModel.getAllAppeals().observe(this, appealAdapter::setAppealRooms);
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT) {
@@ -66,25 +55,20 @@ public class AppealsActivity extends AppCompatActivity {
             }
         }).attachToRecyclerView(recyclerView);
 
-        appealAdapter.setOnItemClickListener(new AppealAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(AppealRoom appealRoom) {
-                Intent intent = new Intent(getApplicationContext(), AddAppealActivity.class);
-                intent.putExtra(AddAppealActivity.EXTRA_ID,appealRoom.getId());
-                intent.putExtra(AddAppealActivity.EXTRA_TITLE, appealRoom.getTitle());
-                intent.putExtra(AddAppealActivity.EXTRA_DESCRIPTION, appealRoom.getDescription());
-                startActivityForResult(intent, EDIT_NOTE_REQUEST);
-            }
+        appealAdapter.setOnItemClickListener(appealRoom -> {
+            Intent intent = new Intent(getApplicationContext(), AddAppealActivity.class);
+            intent.putExtra(AddAppealActivity.EXTRA_ID,appealRoom.getId());
+            intent.putExtra(AddAppealActivity.EXTRA_TITLE, appealRoom.getTitle());
+            intent.putExtra(AddAppealActivity.EXTRA_DESCRIPTION, appealRoom.getDescription());
+            intent.putExtra(AddAppealActivity.EXTRA_IMAGE, appealRoom.getImage());
+            startActivityForResult(intent, EDIT_NOTE_REQUEST);
         });
 
 
-        FloatingActionButton button = (FloatingActionButton) findViewById(R.id.addAppeal);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AddAppealActivity.class);
-                startActivityForResult(intent, ADD_NOTE_REQUEST);
-            }
+        FloatingActionButton button = findViewById(R.id.addAppeal);
+        button.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), AddAppealActivity.class);
+            startActivityForResult(intent, ADD_NOTE_REQUEST);
         });
 
     }
@@ -94,8 +78,8 @@ public class AppealsActivity extends AppCompatActivity {
         if(requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK){
             String title = data.getStringExtra(AddAppealActivity.EXTRA_TITLE);
             String description = data.getStringExtra(AddAppealActivity.EXTRA_DESCRIPTION);
-
-            AppealRoom appealRoom = new AppealRoom(title, description);
+            String image = data.getStringExtra(AddAppealActivity.EXTRA_IMAGE);
+            AppealRoom appealRoom = new AppealRoom(title, description, image);
             appealsViewModel.insert(appealRoom);
 
             Toast.makeText(getApplicationContext(), "Appeal saved", Toast.LENGTH_SHORT).show();
@@ -106,8 +90,8 @@ public class AppealsActivity extends AppCompatActivity {
             }
             String title = data.getStringExtra(AddAppealActivity.EXTRA_TITLE);
             String description = data.getStringExtra(AddAppealActivity.EXTRA_DESCRIPTION);
-
-            AppealRoom appealRoom = new AppealRoom(title, description);
+            String image = data.getStringExtra(AddAppealActivity.EXTRA_IMAGE);
+            AppealRoom appealRoom = new AppealRoom(title, description, image);
             appealRoom.setId(id);
             appealsViewModel.update(appealRoom);
             Toast.makeText(getApplicationContext(), "Appeal updated", Toast.LENGTH_SHORT).show();
