@@ -45,7 +45,6 @@ public class ChangeDataHelperActivity extends AppCompatActivity implements Profi
         intent.putExtra("userfullname", user.getFullname().toString());
         intent.putExtra("userphone", user.getPhone().toString());
         intent.putExtra("useraddress", user.getAddress().toString());
-        intent.putExtra("user", (Serializable) user);
         setResult(RESULT_OK,intent);
         finish();
         Toast.makeText(this, "Data Changed", Toast.LENGTH_SHORT).show();

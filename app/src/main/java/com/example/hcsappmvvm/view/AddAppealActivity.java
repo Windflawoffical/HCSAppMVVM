@@ -3,6 +3,7 @@ package com.example.hcsappmvvm.view;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 
 import android.content.Intent;
@@ -16,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.hcsappmvvm.R;
+import com.example.hcsappmvvm.Room.AppealRoom;
+import com.example.hcsappmvvm.viewmodel.AppealsViewModel;
 
 
 public class AddAppealActivity extends AppCompatActivity {
@@ -31,6 +34,8 @@ public class AddAppealActivity extends AppCompatActivity {
     Uri uriImage;
     private EditText editTextTitle;
     private EditText editTextDescription;
+    private ImageView imageView;
+    private AppealsViewModel appealsViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +43,17 @@ public class AddAppealActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_appeal);
 
         editTextTitle = findViewById(R.id.TitleOfAppeal);
-        editTextDescription= findViewById(R.id.AppealDescription);
+        editTextDescription = findViewById(R.id.AppealDescription);
+        imageView = findViewById(R.id.Image);
+
 
         Button savebutton = findViewById(R.id.confirmBtn);
         Button saveimage = findViewById(R.id.addimage);
 
-        ActivityResultLauncher<String[]> getContentimage = getActivityResultRegistry().register("key", new ActivityResultContracts.OpenDocument(), result -> {
+        appealsViewModel = new ViewModelProvider(this).get(AppealsViewModel.class);
+
+        ActivityResultLauncher<String[]> getContentimage = getActivityResultRegistry().
+                register("key", new ActivityResultContracts.OpenDocument(), result -> {
             getContentResolver().takePersistableUriPermission(result, Intent.FLAG_GRANT_READ_URI_PERMISSION);
             ImageView imageView = findViewById(R.id.Image);
             imageView.setImageURI(result);
@@ -60,24 +70,9 @@ public class AddAppealActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Please enter title and description", Toast.LENGTH_SHORT).show();
                 return;
             }
-            Intent data = new Intent();
-            data.putExtra(AddAppealActivity.EXTRA_TITLE,title);
-            data.putExtra(AddAppealActivity.EXTRA_DESCRIPTION,description);
-            data.putExtra(AddAppealActivity.EXTRA_IMAGE, image);
-            int id = getIntent().getIntExtra(EXTRA_ID, -1);
-            if(id != -1){
-                data.putExtra(EXTRA_ID,id);
-            }
-            setResult(RESULT_OK,data);
+            AppealRoom appealRoom = new AppealRoom(title, description, image);
+            appealsViewModel.insert(appealRoom);
             finish();
         });
-
-
-        Intent intent = getIntent();
-        if(intent.hasExtra(EXTRA_ID)){
-            editTextTitle.setText(intent.getStringExtra(EXTRA_TITLE));
-            editTextDescription.setText(intent.getStringExtra(EXTRA_DESCRIPTION));
-
-        }
     }
 }

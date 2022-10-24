@@ -55,48 +55,11 @@ public class AppealsActivity extends AppCompatActivity {
             }
         }).attachToRecyclerView(recyclerView);
 
-        appealAdapter.setOnItemClickListener(appealRoom -> {
-            Intent intent = new Intent(getApplicationContext(), AddAppealActivity.class);
-            intent.putExtra(AddAppealActivity.EXTRA_ID,appealRoom.getId());
-            intent.putExtra(AddAppealActivity.EXTRA_TITLE, appealRoom.getTitle());
-            intent.putExtra(AddAppealActivity.EXTRA_DESCRIPTION, appealRoom.getDescription());
-            intent.putExtra(AddAppealActivity.EXTRA_IMAGE, appealRoom.getImage());
-            startActivityForResult(intent, EDIT_NOTE_REQUEST);
-        });
-
-
         FloatingActionButton button = findViewById(R.id.addAppeal);
         button.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), AddAppealActivity.class);
-            startActivityForResult(intent, ADD_NOTE_REQUEST);
+            startActivity(intent);
         });
 
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK){
-            String title = data.getStringExtra(AddAppealActivity.EXTRA_TITLE);
-            String description = data.getStringExtra(AddAppealActivity.EXTRA_DESCRIPTION);
-            String image = data.getStringExtra(AddAppealActivity.EXTRA_IMAGE);
-            AppealRoom appealRoom = new AppealRoom(title, description, image);
-            appealsViewModel.insert(appealRoom);
-
-            Toast.makeText(getApplicationContext(), "Appeal saved", Toast.LENGTH_SHORT).show();
-        } else if(requestCode == EDIT_NOTE_REQUEST && resultCode == RESULT_OK){
-            int id = data.getIntExtra(AddAppealActivity.EXTRA_ID,-1);
-            if(id == -1){
-                Toast.makeText(this,"Appeal can not be updated",Toast.LENGTH_SHORT).show();
-            }
-            String title = data.getStringExtra(AddAppealActivity.EXTRA_TITLE);
-            String description = data.getStringExtra(AddAppealActivity.EXTRA_DESCRIPTION);
-            String image = data.getStringExtra(AddAppealActivity.EXTRA_IMAGE);
-            AppealRoom appealRoom = new AppealRoom(title, description, image);
-            appealRoom.setId(id);
-            appealsViewModel.update(appealRoom);
-            Toast.makeText(getApplicationContext(), "Appeal updated", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getApplicationContext(), "Appeal not saved", Toast.LENGTH_SHORT).show();
-        }
     }
 }
