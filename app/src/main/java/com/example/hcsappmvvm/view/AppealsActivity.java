@@ -21,8 +21,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class AppealsActivity extends AppCompatActivity {
-    public static final int ADD_NOTE_REQUEST = 1;
-    public static final int EDIT_NOTE_REQUEST = 2;
 
     private AppealsViewModel appealsViewModel;
 
@@ -51,9 +49,20 @@ public class AppealsActivity extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 appealsViewModel.delete(appealAdapter.getAppealAt(viewHolder.getAdapterPosition()));
-                Toast.makeText(getApplicationContext(),"Appeal deleted",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Appeal deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
+
+        appealAdapter.setOnItemClickListener(appealRoom -> {
+            Intent intent = new Intent(this, EditAppealActivity.class);
+            intent.putExtra("AppealTitle",appealRoom.getTitle());
+            intent.putExtra("AppealDescription",appealRoom.getDescription());
+            intent.putExtra(AddAppealActivity.EXTRA_ID,appealRoom.getId());
+            if(appealRoom.getImage()!=null){
+                intent.putExtra("AppealImage",appealRoom.getImage());
+            }
+            startActivity(intent);
+        });
 
         FloatingActionButton button = findViewById(R.id.addAppeal);
         button.setOnClickListener(view -> {

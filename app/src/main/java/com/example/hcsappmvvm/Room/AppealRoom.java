@@ -1,5 +1,6 @@
 package com.example.hcsappmvvm.Room;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -9,8 +10,11 @@ import com.example.hcsappmvvm.model.Appeal;
 public class AppealRoom extends Appeal{
     @PrimaryKey(autoGenerate = true)
     private int id;
+    @ColumnInfo(name = "title")
     public String Title;
+    @ColumnInfo(name = "description")
     public String Description;
+    @ColumnInfo(name = "image")
     public String image;
 
     public AppealRoom(String title, String description, String image) {

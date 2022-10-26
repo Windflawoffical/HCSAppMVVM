@@ -19,12 +19,13 @@ import java.util.List;
 public class AppealAdapter extends RecyclerView.Adapter<AppealAdapter.AppealHolder> {
 
     private List<AppealRoom> appealRooms = new ArrayList<>();
+    private onItemClickListener listener;
 
     @NonNull
     @Override
     public AppealHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.appeal_item,parent,false);
+                .inflate(R.layout.appeal_item, parent, false);
         return new AppealHolder(view);
     }
 
@@ -33,7 +34,9 @@ public class AppealAdapter extends RecyclerView.Adapter<AppealAdapter.AppealHold
         AppealRoom currentAppeal = appealRooms.get(position);
         holder.textViewTitle.setText(currentAppeal.getTitle());
         holder.textViewDescription.setText(currentAppeal.getDescription());
-        holder.imageView.setImageURI(Uri.parse(currentAppeal.getImage()));
+        if(currentAppeal.getImage() != null){
+            holder.imageView.setImageURI(Uri.parse(currentAppeal.getImage()));
+        }
     }
 
     @Override
@@ -41,12 +44,12 @@ public class AppealAdapter extends RecyclerView.Adapter<AppealAdapter.AppealHold
         return appealRooms.size();
     }
 
-    public void setAppealRooms(List<AppealRoom> appealRooms){
+    public void setAppealRooms(List<AppealRoom> appealRooms) {
         this.appealRooms = appealRooms;
         notifyDataSetChanged();
     }
 
-    public AppealRoom getAppealAt(int position){
+    public AppealRoom getAppealAt(int position) {
         return appealRooms.get(position);
     }
 
@@ -55,12 +58,28 @@ public class AppealAdapter extends RecyclerView.Adapter<AppealAdapter.AppealHold
         private TextView textViewDescription;
         private ImageView imageView;
 
-        public AppealHolder(View view){
+        public AppealHolder(View view) {
             super(view);
             textViewTitle = view.findViewById(R.id.text_view_title);
             textViewDescription = view.findViewById(R.id.text_view_description);
             imageView = view.findViewById(R.id.imageViewList);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION)
+                        listener.onItemClick(appealRooms.get(position));
+                }
+            });
         }
+    }
+
+    public interface onItemClickListener {
+        void onItemClick(AppealRoom appealRoom);
+    }
+
+    public void setOnItemClickListener(onItemClickListener listener) {
+        this.listener = listener;
     }
 }

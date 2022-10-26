@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp"
+    tools:context=".view.AddAppealActivity"
+    android:background="@color/signupColor">
+
+
+    <EditText
+        android:id="@+id/titleappeal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Название жалобы"
+        android:textColorHint="@color/white"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+    <EditText
+        android:id="@+id/descriptionappeal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:gravity="fill_vertical"
+        android:hint="Описание жалобы"
+        android:textColorHint="@color/white"
+        android:layout_below="@+id/titleappeal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageofappeal"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/descriptionappeal"
+        android:layout_centerInParent="true"></ImageView>
+
+    <Button
+        android:id="@+id/editimage"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Изменить фотографию"
+        android:layout_below="@+id/imageofappeal" />
+    <Button
+        android:id="@+id/deleteimage"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Удалить фотографию"
+        android:layout_below="@+id/imageofappeal"
+        android:layout_alignParentRight="true"/>
+
+    <Button
+        android:id="@+id/confirmeditBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Сохранить жалобу"
+        android:layout_below="@+id/editimage"/>
+
+</RelativeLayout>

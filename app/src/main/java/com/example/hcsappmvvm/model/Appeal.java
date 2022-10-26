@@ -13,6 +13,7 @@ public class Appeal {
         this.image = image;
     }
 
+
     public Appeal() {
     }
 

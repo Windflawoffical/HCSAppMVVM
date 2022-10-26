@@ -18,24 +18,20 @@ import android.widget.Toast;
 
 import com.example.hcsappmvvm.R;
 import com.example.hcsappmvvm.Room.AppealRoom;
+import com.example.hcsappmvvm.viewmodel.AddAppealViewModel;
 import com.example.hcsappmvvm.viewmodel.AppealsViewModel;
 
 
 public class AddAppealActivity extends AppCompatActivity {
     public static final String EXTRA_ID =
             "com.example.hcsappmvvm.view.EXTRA_ID";
-    public static final String EXTRA_TITLE =
-            "com.example.hcsappmvvm.view.EXTRA_TITLE";
-    public static final String EXTRA_DESCRIPTION =
-            "com.example.hcsappmvvm.view.EXTRA_DESCRIPTION";
-    public static final String EXTRA_IMAGE =
-            "com.example.hcsappmvvm.view.EXTRA_IMAGE";
 
     Uri uriImage;
     private EditText editTextTitle;
     private EditText editTextDescription;
     private ImageView imageView;
-    private AppealsViewModel appealsViewModel;
+    private AddAppealViewModel addAppealViewModel;
+    private String image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +42,11 @@ public class AddAppealActivity extends AppCompatActivity {
         editTextDescription = findViewById(R.id.AppealDescription);
         imageView = findViewById(R.id.Image);
 
-
         Button savebutton = findViewById(R.id.confirmBtn);
         Button saveimage = findViewById(R.id.addimage);
 
-        appealsViewModel = new ViewModelProvider(this).get(AppealsViewModel.class);
+        addAppealViewModel = new ViewModelProvider(this).get(AddAppealViewModel.class);
+
 
         ActivityResultLauncher<String[]> getContentimage = getActivityResultRegistry().
                 register("key", new ActivityResultContracts.OpenDocument(), result -> {
@@ -65,14 +61,21 @@ public class AddAppealActivity extends AppCompatActivity {
         savebutton.setOnClickListener(view -> {
             String title = editTextTitle.getText().toString();
             String description = editTextDescription.getText().toString();
-            String image = uriImage.toString();
             if(title.trim().isEmpty() || description.trim().isEmpty()){
                 Toast.makeText(getApplicationContext(),"Please enter title and description", Toast.LENGTH_SHORT).show();
                 return;
             }
-            AppealRoom appealRoom = new AppealRoom(title, description, image);
-            appealsViewModel.insert(appealRoom);
+            if(imageView.getDrawable() == null){
+                AppealRoom appealRoom = new AppealRoom(title, description,null);
+                addAppealViewModel.insert(appealRoom);
+            } else{
+                image = uriImage.toString();
+                AppealRoom appealRoom = new AppealRoom(title, description, image);
+                addAppealViewModel.insert(appealRoom);
+            }
+            Toast.makeText(getApplicationContext(),"Appeal saved", Toast.LENGTH_SHORT).show();
             finish();
+
         });
     }
 }
