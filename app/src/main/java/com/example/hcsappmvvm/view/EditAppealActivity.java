@@ -6,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +21,8 @@ import com.example.hcsappmvvm.R;
 import com.example.hcsappmvvm.Room.AppealRoom;
 import com.example.hcsappmvvm.viewmodel.AddAppealViewModel;
 import com.example.hcsappmvvm.viewmodel.EditAppealViewModel;
+
+import java.io.ByteArrayOutputStream;
 
 public class EditAppealActivity extends AppCompatActivity {
 
@@ -75,7 +80,8 @@ public class EditAppealActivity extends AppCompatActivity {
                 return;
             }
             if (imageView.getDrawable() != null && uriImage == null){
-                AppealRoom updatedappealRoom = new AppealRoom(titleofappeal, descriptionofappeal,imageView.toString());
+                image = imageView.getDrawable().toString();
+                AppealRoom updatedappealRoom = new AppealRoom(titleofappeal, descriptionofappeal, image);
                 updatedappealRoom.setId(appealid);
                 editAppealViewModel.update(updatedappealRoom);
             } else if(imageView.getDrawable() != null && uriImage != null){

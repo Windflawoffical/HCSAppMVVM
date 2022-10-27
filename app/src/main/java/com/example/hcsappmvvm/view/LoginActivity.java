@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity implements AuthListener {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
         Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     @Override

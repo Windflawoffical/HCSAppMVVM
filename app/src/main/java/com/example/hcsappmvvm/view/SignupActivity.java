@@ -30,6 +30,7 @@ public class SignupActivity extends AppCompatActivity implements AuthListener {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     @Override
