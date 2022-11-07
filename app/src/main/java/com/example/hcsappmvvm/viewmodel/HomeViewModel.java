@@ -10,9 +10,6 @@ public class HomeViewModel extends ViewModel {
 
     public HomeListener homeListener = null;
 
-    public void onAccButtonClick(View view){
-        homeListener.onAcc();
-    }
     public void onAppealsButtonClick(View view){
         homeListener.onAppeals();
 

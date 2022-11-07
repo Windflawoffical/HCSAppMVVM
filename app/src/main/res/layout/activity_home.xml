@@ -25,28 +25,11 @@
         app:srcCompat="@android:mipmap/sym_def_app_icon" />
 
     <Button
-        android:onClick="@{(view) -> Homeviewmodel.onAccButtonClick(view)}"
-        android:id="@+id/Acc"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="250dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/shapestyle"
-        android:hint="Личный кабинет"
-        android:padding="10dp"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/appeals"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="308dp"
+        android:layout_marginTop="244dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/shapestyle"
         android:hint="Написать жалобу"

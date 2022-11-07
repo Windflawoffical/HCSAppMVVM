@@ -25,13 +25,6 @@ public class HomeActivity extends AppCompatActivity implements HomeListener {
         homeViewModel.homeListener = this;
     }
 
-    @Override
-    public void onAcc() {
-        Intent accintent = new Intent(this, AccActivity.class);
-        startActivity(accintent);
-        Toast.makeText(this, "Method is working", Toast.LENGTH_SHORT).show();
-    }
-
 
     @Override
     public void onAppeals() {
