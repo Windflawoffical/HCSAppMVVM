@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.hcsappmvvm.Room.AppealRoom;
 import com.example.hcsappmvvm.Room.AppealRoomRepository;
+import com.example.hcsappmvvm.model.Appeal;
 
 import java.util.List;
 
@@ -21,8 +22,8 @@ public class AddAppealViewModel extends AndroidViewModel {
         repository = new AppealRoomRepository(application);
         allAppeals = repository.getAllAppeals();
     }
-    public void insert(AppealRoom appealRoom){
-        repository.insert(appealRoom);
+    public void insert(Appeal appeal){
+        repository.insert(appeal);
     }
 
 }

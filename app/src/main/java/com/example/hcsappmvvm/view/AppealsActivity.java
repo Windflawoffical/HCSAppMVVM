@@ -62,6 +62,7 @@ public class AppealsActivity extends AppCompatActivity {
                 intent.putExtra("AppealImage",appealRoom.getImage());
             }
             startActivity(intent);
+            finish();
         });
 
         FloatingActionButton button = findViewById(R.id.addAppeal);

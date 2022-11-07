@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.hcsappmvvm.R;
 import com.example.hcsappmvvm.Room.AppealRoom;
+import com.example.hcsappmvvm.model.Appeal;
 import com.example.hcsappmvvm.viewmodel.AddAppealViewModel;
 import com.example.hcsappmvvm.viewmodel.EditAppealViewModel;
 
@@ -81,23 +82,23 @@ public class EditAppealActivity extends AppCompatActivity {
             }
             if (imageView.getDrawable() != null && uriImage == null){
                 image = imageView.getDrawable().toString();
-                AppealRoom updatedappealRoom = new AppealRoom(titleofappeal, descriptionofappeal, image);
-                updatedappealRoom.setId(appealid);
-                editAppealViewModel.update(updatedappealRoom);
+                Appeal updatedappeal = new Appeal(titleofappeal, descriptionofappeal, image);
+                updatedappeal.setId(appealid);
+                editAppealViewModel.update(updatedappeal);
             } else if(imageView.getDrawable() != null && uriImage != null){
                 image = uriImage.toString();
-                AppealRoom updatedappealRoom = new AppealRoom(titleofappeal, descriptionofappeal, image);
-                updatedappealRoom.setId(appealid);
-                editAppealViewModel.update(updatedappealRoom);
+                Appeal updatedappeal = new Appeal(titleofappeal, descriptionofappeal, image);
+                updatedappeal.setId(appealid);
+                editAppealViewModel.update(updatedappeal);
             } else if (imageView.getDrawable() == null && uriImage != null){
                 image = uriImage.toString();
-                AppealRoom updatedappealRoom = new AppealRoom(titleofappeal, descriptionofappeal, null);
-                updatedappealRoom.setId(appealid);
-                editAppealViewModel.update(updatedappealRoom);
+                Appeal updatedappeal = new Appeal(titleofappeal, descriptionofappeal, null);
+                updatedappeal.setId(appealid);
+                editAppealViewModel.update(updatedappeal);
             } else {
-                AppealRoom updatedappealRoom = new AppealRoom(titleofappeal, descriptionofappeal, null);
-                updatedappealRoom.setId(appealid);
-                editAppealViewModel.update(updatedappealRoom);
+                Appeal updatedappeal = new Appeal(titleofappeal, descriptionofappeal, null);
+                updatedappeal.setId(appealid);
+                editAppealViewModel.update(updatedappeal);
             }
             Toast.makeText(getApplicationContext(),"Appeal updated", Toast.LENGTH_SHORT).show();
             finish();

@@ -19,23 +19,27 @@ public class AppealRoomRepository {
         appealDAO = database.appealDAO();
         allAppeals = appealDAO.getAllAppeals();
     }
-    public void insert(AppealRoom appealRoom) {
+    public <T extends Appeal> void insert(T appeal) {
         AppealDatabase.databaseWriteExecutor.execute(()->{
-            appealDAO.insertAppeal(appealRoom);
+            appealDAO.insertAppeal(AppealRoom.convertToDB(appeal));
         });
     }
-    public void delete(AppealRoom appealRoom) {
+    public <T extends Appeal> void delete(T appeal) {
         AppealDatabase.databaseWriteExecutor.execute(()->{
-            appealDAO.deleteAppeal(appealRoom);
+            appealDAO.deleteAppeal(AppealRoom.convertToDB(appeal));
         });
     }
-    public void update(AppealRoom appealRoom){
+    public <T extends Appeal> void update(T appeal){
         AppealDatabase.databaseWriteExecutor.execute(()->{
-            appealDAO.updateAppeal(appealRoom);
+            appealDAO.updateAppeal(AppealRoom.convertToDB(appeal));
         });
     }
     public LiveData<List<AppealRoom>> getAllAppeals() {
         return allAppeals;
+    }
+
+    public AppealRoom getAppealById(int id){
+        return appealDAO.getAppealById(id);
     }
 
 }

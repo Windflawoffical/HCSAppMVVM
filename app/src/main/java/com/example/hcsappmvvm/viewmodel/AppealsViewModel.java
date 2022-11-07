@@ -27,8 +27,8 @@ public class AppealsViewModel extends AndroidViewModel {
         allAppeals = repository.getAllAppeals();
     }
 
-    public void delete(AppealRoom appealRoom){
-        repository.delete(appealRoom);
+    public void delete(Appeal appeal){
+        repository.delete(appeal);
     }
     public LiveData<List<AppealRoom>> getAllAppeals(){
         return allAppeals;

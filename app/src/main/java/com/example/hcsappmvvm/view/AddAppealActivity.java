@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.hcsappmvvm.R;
 import com.example.hcsappmvvm.Room.AppealRoom;
+import com.example.hcsappmvvm.model.Appeal;
 import com.example.hcsappmvvm.viewmodel.AddAppealViewModel;
 import com.example.hcsappmvvm.viewmodel.AppealsViewModel;
 
@@ -66,12 +67,12 @@ public class AddAppealActivity extends AppCompatActivity {
                 return;
             }
             if(imageView.getDrawable() == null){
-                AppealRoom appealRoom = new AppealRoom(title, description,null);
-                addAppealViewModel.insert(appealRoom);
+                Appeal appeal = new Appeal(title, description,null);
+                addAppealViewModel.insert(appeal);
             } else{
                 image = uriImage.toString();
-                AppealRoom appealRoom = new AppealRoom(title, description, image);
-                addAppealViewModel.insert(appealRoom);
+                Appeal appeal = new Appeal(title, description, image);
+                addAppealViewModel.insert(appeal);
             }
             Toast.makeText(getApplicationContext(),"Appeal saved", Toast.LENGTH_SHORT).show();
             finish();

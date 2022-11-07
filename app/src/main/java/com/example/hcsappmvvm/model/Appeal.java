@@ -3,6 +3,7 @@ package com.example.hcsappmvvm.model;
 import java.util.List;
 
 public class Appeal {
+    private int id;
     public String AppealTitle;
     public String AppealDescription;
     public String image;
@@ -38,5 +39,13 @@ public class Appeal {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

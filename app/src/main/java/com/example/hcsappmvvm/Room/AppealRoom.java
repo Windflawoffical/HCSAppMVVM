@@ -57,4 +57,15 @@ public class AppealRoom extends Appeal{
     public void setImage(String image) {
         this.image = image;
     }
+
+    public static AppealRoom convertToDB(Appeal appeal){
+        AppealRoom appealRoom = new AppealRoom();
+
+        appealRoom.setId(appeal.getId());
+        appealRoom.setTitle(appeal.getAppealTitle());
+        appealRoom.setDescription(appeal.getAppealDescription());
+        appealRoom.setImage(appeal.getImage());
+
+        return appealRoom;
+    }
 }

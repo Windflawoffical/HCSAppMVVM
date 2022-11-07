@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.hcsappmvvm.Room.AppealRoom;
 import com.example.hcsappmvvm.Room.AppealRoomRepository;
+import com.example.hcsappmvvm.model.Appeal;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class EditAppealViewModel extends AndroidViewModel {
         repository = new AppealRoomRepository(application);
         allAppeals = repository.getAllAppeals();
     }
-    public void update(AppealRoom appealRoom){
-        repository.update(appealRoom);
+    public void update(Appeal appeal){
+        repository.update(appeal);
     }
 }
