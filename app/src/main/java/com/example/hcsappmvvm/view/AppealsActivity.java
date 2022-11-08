@@ -55,12 +55,7 @@ public class AppealsActivity extends AppCompatActivity {
 
         appealAdapter.setOnItemClickListener(appealRoom -> {
             Intent intent = new Intent(this, EditAppealActivity.class);
-            intent.putExtra("AppealTitle",appealRoom.getTitle());
-            intent.putExtra("AppealDescription",appealRoom.getDescription());
             intent.putExtra(AddAppealActivity.EXTRA_ID,appealRoom.getId());
-            if(appealRoom.getImage()!=null){
-                intent.putExtra("AppealImage",appealRoom.getImage());
-            }
             startActivity(intent);
             finish();
         });

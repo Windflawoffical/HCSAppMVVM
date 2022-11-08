@@ -26,6 +26,6 @@ public interface AppealDAO {
     @Update
     void updateAppeal(AppealRoom appealRoom);
 
-    @Query("SELECT * FROM APPEAL_TABLE WHERE id == :id")
+    @Query("SELECT * FROM APPEAL_TABLE WHERE id = :id")
     AppealRoom getAppealById(int id);
 }

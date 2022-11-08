@@ -25,4 +25,7 @@ public class EditAppealViewModel extends AndroidViewModel {
     public void update(Appeal appeal){
         repository.update(appeal);
     }
+    public AppealRoom getAppealById(int id){
+        return repository.getAppealById(id);
+    }
 }

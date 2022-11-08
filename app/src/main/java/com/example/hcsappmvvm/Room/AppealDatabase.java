@@ -29,7 +29,7 @@ public abstract class AppealDatabase extends RoomDatabase {
     public static synchronized AppealDatabase getInstance(Context context){
         if(instance == null){
             instance = Room.databaseBuilder(context.getApplicationContext(), AppealDatabase.class, "appeal_database")
-                    .fallbackToDestructiveMigration()
+                    .fallbackToDestructiveMigration().allowMainThreadQueries()
                     .build();
         }
         return instance;

@@ -32,8 +32,9 @@ public class EditAppealActivity extends AppCompatActivity {
     private EditText descriptionedittext;
     private ImageView imageView;
     Uri uriImage;
-    int appealid = -1;
+    int id;
     private String image;
+    AppealRoom appealRoom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +62,16 @@ public class EditAppealActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent.hasExtra(AddAppealActivity.EXTRA_ID))
         {
-            titleedittext.setText(intent.getStringExtra("AppealTitle"));
-            descriptionedittext.setText(intent.getStringExtra("AppealDescription"));
-            if(intent.hasExtra("AppealImage")){
-                imageView.setImageURI(Uri.parse(intent.getStringExtra("AppealImage")));
+            int id = intent.getIntExtra(AddAppealActivity.EXTRA_ID, -1);
+            appealRoom = editAppealViewModel.getAppealById(id);
+            titleedittext.setText(appealRoom.getTitle());
+            descriptionedittext.setText(appealRoom.getDescription());
+            if(appealRoom.getImage() != null){
+                imageView.setImageURI(Uri.parse(appealRoom.getImage()));
             }
-            appealid = intent.getIntExtra(AddAppealActivity.EXTRA_ID, -1);
-
+            //image = imageView.getDrawable().toString();
+            //допилить метод getAppealById(int id)
+            //реализовать получение данных
         }
 
         Button deletebtn = findViewById(R.id.deleteimage);
@@ -81,28 +85,41 @@ public class EditAppealActivity extends AppCompatActivity {
                 return;
             }
             if (imageView.getDrawable() != null && uriImage == null){
-                image = imageView.getDrawable().toString();
-                Appeal updatedappeal = new Appeal(titleofappeal, descriptionofappeal, image);
-                updatedappeal.setId(appealid);
-                editAppealViewModel.update(updatedappeal);
+                String imageforappeal = imageView.toString();
+                Appeal updateappeal = new Appeal();
+                updateappeal.setAppealTitle(titleofappeal);
+                updateappeal.setAppealDescription(descriptionofappeal);
+                updateappeal.setImage(imageforappeal);
+                updateappeal.setId(appealRoom.getId());
+                editAppealViewModel.update(updateappeal);
             } else if(imageView.getDrawable() != null && uriImage != null){
                 image = uriImage.toString();
-                Appeal updatedappeal = new Appeal(titleofappeal, descriptionofappeal, image);
-                updatedappeal.setId(appealid);
-                editAppealViewModel.update(updatedappeal);
+                Appeal updateappeal = new Appeal();
+                updateappeal.setAppealTitle(titleofappeal);
+                updateappeal.setAppealDescription(descriptionofappeal);
+                updateappeal.setImage(image);
+                updateappeal.setId(appealRoom.getId());
+                editAppealViewModel.update(updateappeal);
             } else if (imageView.getDrawable() == null && uriImage != null){
                 image = uriImage.toString();
-                Appeal updatedappeal = new Appeal(titleofappeal, descriptionofappeal, null);
-                updatedappeal.setId(appealid);
-                editAppealViewModel.update(updatedappeal);
+                Appeal updateappeal = new Appeal();
+                updateappeal.setAppealTitle(titleofappeal);
+                updateappeal.setAppealDescription(descriptionofappeal);
+                updateappeal.setImage(image);
+                updateappeal.setId(appealRoom.getId());
+                editAppealViewModel.update(updateappeal);
             } else {
-                Appeal updatedappeal = new Appeal(titleofappeal, descriptionofappeal, null);
-                updatedappeal.setId(appealid);
-                editAppealViewModel.update(updatedappeal);
+                Appeal updateappeal = new Appeal();
+                updateappeal.setAppealTitle(titleofappeal);
+                updateappeal.setAppealDescription(descriptionofappeal);
+                updateappeal.setImage(image);
+                updateappeal.setId(appealRoom.getId());
+                editAppealViewModel.update(updateappeal);
             }
             Toast.makeText(getApplicationContext(),"Appeal updated", Toast.LENGTH_SHORT).show();
             finish();
         });
+
 
     }
 }
