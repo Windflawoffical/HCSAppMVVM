@@ -14,7 +14,7 @@ import com.example.hcsappmvvm.model.Appeal;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {AppealRoom.class},version = 1)
+@Database(entities = {AppealRoom.class},version = 1, exportSchema = false)
 public abstract class AppealDatabase extends RoomDatabase {
 
     private static AppealDatabase instance;

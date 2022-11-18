@@ -7,10 +7,11 @@ import androidx.lifecycle.LiveData;
 import com.example.hcsappmvvm.Room.AppealDatabase;
 
 import com.example.hcsappmvvm.model.Appeal;
+import com.example.hcsappmvvm.repo.RepositoryTasks;
 
 import java.util.List;
 
-public class AppealRoomRepository {
+public class AppealRoomRepository implements RepositoryTasks {
     private AppealDAO appealDAO;
     private LiveData<List<AppealRoom>> allAppeals;
 
@@ -19,23 +20,29 @@ public class AppealRoomRepository {
         appealDAO = database.appealDAO();
         allAppeals = appealDAO.getAllAppeals();
     }
-    public <T extends Appeal> void insert(T appeal) {
+    public LiveData<List<AppealRoom>> getAllAppeals() {
+        return allAppeals;
+    }
+
+    @Override
+    public void insertAppeal(Appeal appeal) {
         AppealDatabase.databaseWriteExecutor.execute(()->{
             appealDAO.insertAppeal(AppealRoom.convertToDB(appeal));
         });
     }
-    public <T extends Appeal> void delete(T appeal) {
+
+    @Override
+    public void deleteAppeal(Appeal appeal) {
         AppealDatabase.databaseWriteExecutor.execute(()->{
             appealDAO.deleteAppeal(AppealRoom.convertToDB(appeal));
         });
     }
-    public <T extends Appeal> void update(T appeal){
+
+    @Override
+    public void updateAppeal(Appeal appeal) {
         AppealDatabase.databaseWriteExecutor.execute(()->{
             appealDAO.updateAppeal(AppealRoom.convertToDB(appeal));
         });
-    }
-    public LiveData<List<AppealRoom>> getAllAppeals() {
-        return allAppeals;
     }
 
     public AppealRoom getAppealById(int id){

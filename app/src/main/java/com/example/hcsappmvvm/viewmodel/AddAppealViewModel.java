@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.hcsappmvvm.Room.AppealRoom;
 import com.example.hcsappmvvm.Room.AppealRoomRepository;
+import com.example.hcsappmvvm.DI.ServiceLocator;
 import com.example.hcsappmvvm.model.Appeal;
 
 import java.util.List;
@@ -23,7 +24,10 @@ public class AddAppealViewModel extends AndroidViewModel {
         allAppeals = repository.getAllAppeals();
     }
     public void insert(Appeal appeal){
-        repository.insert(appeal);
+        repository.insertAppeal(appeal);
     }
 
+    public LiveData<List<String>> getAddressList(String address_prototype) {
+        return ServiceLocator.getInstance().getAnalysis().getAddressesFromPattern(address_prototype);
+    }
 }

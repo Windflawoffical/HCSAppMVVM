@@ -7,11 +7,13 @@ public class Appeal {
     public String AppealTitle;
     public String AppealDescription;
     public String image;
+    public String address;
 
-    public Appeal(String appealTitle, String appealDescription,String image) {
+    public Appeal(String appealTitle, String appealDescription,String image, String address) {
         this.AppealTitle = appealTitle;
         this.AppealDescription = appealDescription;
         this.image = image;
+        this.address = address;
     }
 
 
@@ -47,5 +49,13 @@ public class Appeal {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

@@ -37,11 +37,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <AutoCompleteTextView
+        android:id="@+id/AppealAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Введите адрес"
+        android:textColorHint="@color/white"
+        android:layout_below="@id/AppealDescription"/>
+
     <ImageView
         android:id="@+id/Image"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_below="@id/AppealDescription"
+        android:layout_below="@id/AppealAddress"
         android:layout_centerInParent="true"></ImageView>
 
     <Button

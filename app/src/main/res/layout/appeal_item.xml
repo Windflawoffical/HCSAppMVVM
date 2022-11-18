@@ -30,12 +30,21 @@
 
         </TextView>
 
+        <TextView
+            android:id="@+id/text_view_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_description"
+            android:text="Address">
+
+        </TextView>
+
         <ImageView
             android:id="@+id/imageViewList"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/text_view_description">
+            android:layout_below="@id/text_view_address">
         </ImageView>
 
     </RelativeLayout>

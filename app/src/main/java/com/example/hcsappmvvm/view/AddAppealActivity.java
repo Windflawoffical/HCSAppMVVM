@@ -9,7 +9,11 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,6 +26,8 @@ import com.example.hcsappmvvm.model.Appeal;
 import com.example.hcsappmvvm.viewmodel.AddAppealViewModel;
 import com.example.hcsappmvvm.viewmodel.AppealsViewModel;
 
+import java.util.List;
+
 
 public class AddAppealActivity extends AppCompatActivity {
     public static final String EXTRA_ID =
@@ -30,9 +36,12 @@ public class AddAppealActivity extends AppCompatActivity {
     Uri uriImage;
     private EditText editTextTitle;
     private EditText editTextDescription;
+    private EditText editTextAddress;
     private ImageView imageView;
     private AddAppealViewModel addAppealViewModel;
     private String image;
+    AutoCompleteTextView mAutoCompleteTextView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +50,7 @@ public class AddAppealActivity extends AppCompatActivity {
 
         editTextTitle = findViewById(R.id.TitleOfAppeal);
         editTextDescription = findViewById(R.id.AppealDescription);
+        mAutoCompleteTextView = findViewById(R.id.AppealAddress);
         imageView = findViewById(R.id.Image);
 
         Button savebutton = findViewById(R.id.confirmBtn);
@@ -57,21 +67,44 @@ public class AddAppealActivity extends AppCompatActivity {
             uriImage = result;
         });
 
+        mAutoCompleteTextView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+                addAppealViewModel.getAddressList(s.toString()).observe(AddAppealActivity.this, (List<String> values) -> {
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
+                            getApplicationContext(), android.R.layout.simple_list_item_1,values);
+                    arrayAdapter.getFilter().filter(null);
+                    mAutoCompleteTextView.setAdapter(arrayAdapter);
+                });
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         saveimage.setOnClickListener(view -> getContentimage.launch(new String[]{"image/*"}));
 
         savebutton.setOnClickListener(view -> {
             String title = editTextTitle.getText().toString();
             String description = editTextDescription.getText().toString();
-            if(title.trim().isEmpty() || description.trim().isEmpty()){
-                Toast.makeText(getApplicationContext(),"Please enter title and description", Toast.LENGTH_SHORT).show();
+            String appealAddress = mAutoCompleteTextView.getText().toString();
+            if(title.trim().isEmpty() || description.trim().isEmpty() || appealAddress.trim().isEmpty()){
+                Toast.makeText(getApplicationContext(),"Please enter title, description and address", Toast.LENGTH_SHORT).show();
                 return;
             }
             if(imageView.getDrawable() == null){
-                Appeal appeal = new Appeal(title, description,null);
+                Appeal appeal = new Appeal(title, description,null, appealAddress);
                 addAppealViewModel.insert(appeal);
             } else{
                 image = uriImage.toString();
-                Appeal appeal = new Appeal(title, description, image);
+                Appeal appeal = new Appeal(title, description, image, appealAddress);
                 addAppealViewModel.insert(appeal);
             }
             Toast.makeText(getApplicationContext(),"Appeal saved", Toast.LENGTH_SHORT).show();

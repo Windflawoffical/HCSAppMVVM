@@ -13,6 +13,9 @@ android {
         versionCode 1
         versionName "1.0"
 
+        // DaData API Key
+        buildConfigField "String", "DADATA_API_KEY", "\"86ccfe5484112b04f1472f16c5da3e606517964a\""
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -43,4 +46,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 }
