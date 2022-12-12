@@ -18,12 +18,15 @@ public class AppealRoom extends Appeal{
     public String image;
     @ColumnInfo(name = "address")
     public String address;
+    @ColumnInfo(name = "status")
+    public String status;
 
-    public AppealRoom(String title, String description, String image,String address) {
+    public AppealRoom(String title, String description, String image,String address, String status) {
         this.Title = title;
         this.Description = description;
         this.image = image;
         this.address = address;
+        this.status = status;
     }
 
     public AppealRoom() {
@@ -71,6 +74,14 @@ public class AppealRoom extends Appeal{
         this.address = address;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public static AppealRoom convertToDB(Appeal appeal){
         AppealRoom appealRoom = new AppealRoom();
 
@@ -79,6 +90,7 @@ public class AppealRoom extends Appeal{
         appealRoom.setDescription(appeal.getAppealDescription());
         appealRoom.setImage(appeal.getImage());
         appealRoom.setAddress(appeal.getAddress());
+        appealRoom.setStatus(appeal.getStatus());
 
         return appealRoom;
     }

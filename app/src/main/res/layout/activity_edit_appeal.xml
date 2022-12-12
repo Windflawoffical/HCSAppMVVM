@@ -37,32 +37,52 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <AutoCompleteTextView
+        android:id="@+id/AppealAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Введите адрес"
+        android:textColorHint="@color/white"
+        android:layout_below="@id/descriptionappeal"/>
+
     <ImageView
         android:id="@+id/imageofappeal"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_below="@id/descriptionappeal"
-        android:layout_centerInParent="true"></ImageView>
+        android:layout_below="@id/AppealAddress"
+        android:layout_centerInParent="true">
 
-    <Button
-        android:id="@+id/editimage"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="Изменить фотографию"
-        android:layout_below="@+id/imageofappeal" />
+    </ImageView>
+
     <Button
         android:id="@+id/deleteimage"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Удалить фотографию"
         android:layout_below="@+id/imageofappeal"
-        android:layout_alignParentRight="true"/>
+        android:layout_centerInParent="true"/>
 
     <Button
         android:id="@+id/confirmeditBtn"
-        android:layout_width="match_parent"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
-        android:text="Сохранить жалобу"
-        android:layout_below="@+id/editimage"/>
+        android:text="Сохранить"
+        android:layout_below="@+id/deleteimage"/>
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="370dp"
+        android:layout_marginRight="1dp"
+        android:text="Одобрить заявку"
+        android:textSize="20dp">
+
+    </CheckBox>
+
 
 </RelativeLayout>

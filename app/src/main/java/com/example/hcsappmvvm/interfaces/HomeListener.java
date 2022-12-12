@@ -1,5 +1,7 @@
 package com.example.hcsappmvvm.interfaces;
 
 public interface HomeListener {
-    void onAppeals();
+    void onAddAppeal();
+    void onCheckAppeals();
+    void onAddNewModer();
 }

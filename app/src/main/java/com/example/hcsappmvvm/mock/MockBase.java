@@ -17,11 +17,11 @@ public class MockBase implements RepositoryTasks {
     public MockBase() {
         list = new ArrayList<>();
         data = new MutableLiveData<>(list);
-        list.add(new Appeal("Жалоба №1", "Описание жалобы №1", "Image1", "Moscow"));
-        list.add(new Appeal("Жалоба №2", "Описание жалобы №2", "Image2","Moscow"));
-        list.add(new Appeal("Жалоба №3", "Описание жалобы №3", "Image3","Moscow"));
-        list.add(new Appeal("Жалоба №4", "Описание жалобы №4", "Image4","Moscow"));
-        list.add(new Appeal("Жалоба №5", "Описание жалобы №5", "Image5","Moscow"));
+        list.add(new Appeal("Жалоба №1", "Описание жалобы №1", "Image1", "Moscow", "Accepted"));
+        list.add(new Appeal("Жалоба №2", "Описание жалобы №2", "Image2","Moscow", "Accepted"));
+        list.add(new Appeal("Жалоба №3", "Описание жалобы №3", "Image3","Moscow", "Accepted"));
+        list.add(new Appeal("Жалоба №4", "Описание жалобы №4", "Image4","Moscow", "Accepted"));
+        list.add(new Appeal("Жалоба №5", "Описание жалобы №5", "Image5","Moscow", "Accepted"));
 
     }
 

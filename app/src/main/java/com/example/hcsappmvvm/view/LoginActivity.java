@@ -26,13 +26,19 @@ public class LoginActivity extends AppCompatActivity implements AuthListener {
         LoginViewModel loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         loginBinding.setLoginviewmodel(loginViewModel);
         loginViewModel.authListener = this;
+
+        loginBinding.staff.setOnClickListener(view -> {
+            Intent intent = new Intent(this, LoginForStaff.class);
+            startActivity(intent);
+        });
     }
 
 
     @Override
     public void onSuccess() {
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
+        Intent userintent = new Intent(this, HomeActivity.class);
+        userintent.putExtra("Who's come", "User");
+        startActivity(userintent);
         Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
         finish();
     }
@@ -43,13 +49,10 @@ public class LoginActivity extends AppCompatActivity implements AuthListener {
     }
 
     public void onTextClick(View view){
-        TextView textView = (TextView)findViewById(R.id.textView);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),SignupActivity.class);
-                startActivity(intent);
-            }
+        TextView textView = (TextView)findViewById(R.id.signup);
+        textView.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getApplicationContext(),SignupActivity.class);
+            startActivity(intent);
         });
     }
 

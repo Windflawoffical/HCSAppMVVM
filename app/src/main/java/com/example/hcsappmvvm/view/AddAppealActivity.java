@@ -100,11 +100,11 @@ public class AddAppealActivity extends AppCompatActivity {
                 return;
             }
             if(imageView.getDrawable() == null){
-                Appeal appeal = new Appeal(title, description,null, appealAddress);
+                Appeal appeal = new Appeal(title, description,null, appealAddress, null);
                 addAppealViewModel.insert(appeal);
             } else{
                 image = uriImage.toString();
-                Appeal appeal = new Appeal(title, description, image, appealAddress);
+                Appeal appeal = new Appeal(title, description, image, appealAddress, null);
                 addAppealViewModel.insert(appeal);
             }
             Toast.makeText(getApplicationContext(),"Appeal saved", Toast.LENGTH_SHORT).show();

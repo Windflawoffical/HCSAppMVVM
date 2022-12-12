@@ -8,12 +8,14 @@ public class Appeal {
     public String AppealDescription;
     public String image;
     public String address;
+    public String status;
 
-    public Appeal(String appealTitle, String appealDescription,String image, String address) {
+    public Appeal(String appealTitle, String appealDescription,String image, String address,String status) {
         this.AppealTitle = appealTitle;
         this.AppealDescription = appealDescription;
         this.image = image;
         this.address = address;
+        this.status = status;
     }
 
 
@@ -57,5 +59,13 @@ public class Appeal {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

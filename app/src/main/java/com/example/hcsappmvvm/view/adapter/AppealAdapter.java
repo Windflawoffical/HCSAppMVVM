@@ -38,6 +38,11 @@ public class AppealAdapter extends RecyclerView.Adapter<AppealAdapter.AppealHold
             holder.imageView.setImageURI(Uri.parse(currentAppeal.getImage()));
         }
         holder.textViewAddress.setText(currentAppeal.getAddress());
+        if(currentAppeal.getStatus() != null){
+            holder.textViewStatus.setText(currentAppeal.getStatus());
+        } else {
+            holder.textViewStatus.setText(null);
+        }
     }
 
     @Override
@@ -58,6 +63,7 @@ public class AppealAdapter extends RecyclerView.Adapter<AppealAdapter.AppealHold
         private TextView textViewTitle;
         private TextView textViewDescription;
         private TextView textViewAddress;
+        private TextView textViewStatus;
         private ImageView imageView;
 
         public AppealHolder(View view) {
@@ -65,6 +71,7 @@ public class AppealAdapter extends RecyclerView.Adapter<AppealAdapter.AppealHold
             textViewTitle = view.findViewById(R.id.text_view_title);
             textViewDescription = view.findViewById(R.id.text_view_description);
             textViewAddress = view.findViewById(R.id.text_view_address);
+            textViewStatus = view.findViewById(R.id.text_view_status);
             imageView = view.findViewById(R.id.imageViewList);
 
 

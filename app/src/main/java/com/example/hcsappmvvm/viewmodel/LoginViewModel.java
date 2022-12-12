@@ -1,6 +1,7 @@
 package com.example.hcsappmvvm.viewmodel;
 
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
@@ -18,7 +19,6 @@ public class LoginViewModel extends ViewModel  {
 
     public void onLoginButtonClick(View view){
         if(!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches() && password.length() > 5){
-            //success
             authListener.onSuccess();
             return;
         }

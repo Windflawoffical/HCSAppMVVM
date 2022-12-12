@@ -10,8 +10,13 @@ public class HomeViewModel extends ViewModel {
 
     public HomeListener homeListener = null;
 
-    public void onAppealsButtonClick(View view){
-        homeListener.onAppeals();
-
+    public void onAddAppealButtonClick(View view){
+        homeListener.onAddAppeal();
+    }
+    public void onCheckAppealsButtonClick(View view){
+        homeListener.onCheckAppeals();
+    }
+    public void onAddModerButtonClick(View view){
+        homeListener.onAddNewModer();
     }
 }

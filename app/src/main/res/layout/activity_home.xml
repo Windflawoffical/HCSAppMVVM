@@ -25,22 +25,56 @@
         app:srcCompat="@android:mipmap/sym_def_app_icon" />
 
     <Button
-        android:id="@+id/appeals"
+        android:id="@+id/addappeal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="244dp"
+        android:layout_marginTop="250dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/shapestyle"
         android:hint="Написать жалобу"
-        android:onClick="@{(view) -> Homeviewmodel.onAppealsButtonClick(view)}"
+        android:onClick="@{(view) -> Homeviewmodel.onAddAppealButtonClick(view)}"
         android:padding="10dp"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
+    <Button
+        android:id="@+id/checkappeals"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="310dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/shapestyle"
+        android:hint="Проверить жалобы"
+        android:onClick="@{(view) -> Homeviewmodel.onCheckAppealsButtonClick(view)}"
+        android:padding="10dp"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
+    <Button
+        android:id="@+id/ban"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="370dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/shapestyle"
+        android:hint="Задать ID для нового модератора"
+        android:onClick="@{(view) -> Homeviewmodel.onAddModerButtonClick(view)}"
+        android:padding="10dp"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone">
     </Button>
 
   </androidx.constraintlayout.widget.ConstraintLayout>

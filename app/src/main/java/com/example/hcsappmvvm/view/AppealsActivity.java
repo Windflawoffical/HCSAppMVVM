@@ -39,19 +39,6 @@ public class AppealsActivity extends AppCompatActivity {
         appealsViewModel = new ViewModelProvider(this).get(AppealsViewModel.class);
         appealsViewModel.getAllAppeals().observe(this, appealAdapter::setAppealRooms);
 
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
-                ItemTouchHelper.LEFT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                appealsViewModel.delete(appealAdapter.getAppealAt(viewHolder.getAdapterPosition()));
-                Toast.makeText(getApplicationContext(), "Appeal deleted", Toast.LENGTH_SHORT).show();
-            }
-        }).attachToRecyclerView(recyclerView);
 
         appealAdapter.setOnItemClickListener(appealRoom -> {
             Intent intent = new Intent(this, EditAppealActivity.class);
@@ -60,11 +47,6 @@ public class AppealsActivity extends AppCompatActivity {
             finish();
         });
 
-        FloatingActionButton button = findViewById(R.id.addAppeal);
-        button.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), AddAppealActivity.class);
-            startActivity(intent);
-        });
 
     }
 }

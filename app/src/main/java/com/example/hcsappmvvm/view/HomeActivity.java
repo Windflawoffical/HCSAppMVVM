@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.hcsappmvvm.R;
@@ -23,12 +24,43 @@ public class HomeActivity extends AppCompatActivity implements HomeListener {
         HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         homeBinding.setHomeviewmodel(homeViewModel);
         homeViewModel.homeListener = this;
+
+        Intent intent = getIntent();
+        String whoscome = intent.getStringExtra("Who's come");
+        if(whoscome.equals("User")) {
+            homeBinding.addappeal.setVisibility(View.VISIBLE);
+            //homeBinding.checkappeals.setVisibility(View.GONE);
+            //homeBinding.ban.setVisibility(View.GONE);
+        } else if (whoscome.equals("Moderator")) {
+            //homeBinding.addappeal.setVisibility(View.GONE);
+            homeBinding.checkappeals.setVisibility(View.VISIBLE);
+            //homeBinding.ban.setVisibility(View.GONE);
+        } else if (whoscome.equals("Administrator")) {
+            //homeBinding.addappeal.setVisibility(View.GONE);
+            //homeBinding.checkappeals.setVisibility(View.GONE);
+            homeBinding.ban.setVisibility(View.VISIBLE);
+        }
+
     }
 
 
     @Override
-    public void onAppeals() {
-        Intent appealsintent = new Intent(this, AppealsActivity.class);
-        startActivity(appealsintent);
+    public void onAddAppeal() {
+        Intent addappealintent = new Intent(this, AddAppealActivity.class);
+        startActivity(addappealintent);
     }
+
+    @Override
+    public void onCheckAppeals() {
+        Intent oncheckappealsintent = new Intent(this, AppealsActivity.class);
+        startActivity(oncheckappealsintent);
+    }
+
+    @Override
+    public void onAddNewModer() {
+        Intent intent = new Intent(this, AddNewModer.class);
+        startActivity(intent);
+
+    }
+
 }

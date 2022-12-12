@@ -12,9 +12,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hcsappmvvm.R;
@@ -23,13 +26,16 @@ import com.example.hcsappmvvm.model.Appeal;
 import com.example.hcsappmvvm.viewmodel.AddAppealViewModel;
 import com.example.hcsappmvvm.viewmodel.EditAppealViewModel;
 
+import org.w3c.dom.Text;
+
 import java.io.ByteArrayOutputStream;
 
 public class EditAppealActivity extends AppCompatActivity {
 
     private EditAppealViewModel editAppealViewModel;
-    private EditText titleedittext;
-    private EditText descriptionedittext;
+    private TextView titletextview;
+    private TextView descriptiontextview;
+    private AutoCompleteTextView AddressAppeal;
     private ImageView imageView;
     Uri uriImage;
     int id;
@@ -43,12 +49,16 @@ public class EditAppealActivity extends AppCompatActivity {
 
         editAppealViewModel = new ViewModelProvider(this).get(EditAppealViewModel.class);
 
-        titleedittext = findViewById(R.id.titleappeal);
-        descriptionedittext = findViewById(R.id.descriptionappeal);
+        titletextview = findViewById(R.id.titleappeal);
+        descriptiontextview = findViewById(R.id.descriptionappeal);
+        AddressAppeal = findViewById(R.id.AppealAddress);
         imageView = findViewById(R.id.imageofappeal);
+        CheckBox checkBox = findViewById(R.id.checkBox);
+
+
+
 
         Button confirmeditbtn = findViewById(R.id.confirmeditBtn);
-        Button editimage = findViewById(R.id.editimage);
 
         ActivityResultLauncher<String[]> getContentimage = getActivityResultRegistry().
                 register("key", new ActivityResultContracts.OpenDocument(), result -> {
@@ -57,18 +67,18 @@ public class EditAppealActivity extends AppCompatActivity {
                     uriImage = result;
                 });
 
-        editimage.setOnClickListener(view -> getContentimage.launch(new String[]{"image/*"}));
 
         Intent intent = getIntent();
         if(intent.hasExtra(AddAppealActivity.EXTRA_ID))
         {
             int id = intent.getIntExtra(AddAppealActivity.EXTRA_ID, -1);
             appealRoom = editAppealViewModel.getAppealById(id);
-            titleedittext.setText(appealRoom.getTitle());
-            descriptionedittext.setText(appealRoom.getDescription());
+            titletextview.setText(appealRoom.getTitle());
+            descriptiontextview.setText(appealRoom.getDescription());
             if(appealRoom.getImage() != null){
                 imageView.setImageURI(Uri.parse(appealRoom.getImage()));
             }
+            AddressAppeal.setText(appealRoom.getAddress());
             //image = imageView.getDrawable().toString();
             //допилить метод getAppealById(int id)
             //реализовать получение данных
@@ -78,8 +88,8 @@ public class EditAppealActivity extends AppCompatActivity {
         deletebtn.setOnClickListener(view -> imageView.setImageDrawable(null));
 
         confirmeditbtn.setOnClickListener(view -> {
-            String titleofappeal = titleedittext.getText().toString();
-            String descriptionofappeal = descriptionedittext.getText().toString();
+            String titleofappeal = titletextview.getText().toString();
+            String descriptionofappeal = descriptiontextview.getText().toString();
             if(titleofappeal.trim().isEmpty() || descriptionofappeal.trim().isEmpty()){
                 Toast.makeText(getApplicationContext(),"Please enter title and description", Toast.LENGTH_SHORT).show();
                 return;
@@ -90,7 +100,14 @@ public class EditAppealActivity extends AppCompatActivity {
                 updateappeal.setAppealTitle(titleofappeal);
                 updateappeal.setAppealDescription(descriptionofappeal);
                 updateappeal.setImage(imageforappeal);
+                String appealAddress = AddressAppeal.getText().toString();
+                updateappeal.setAddress(appealAddress);
                 updateappeal.setId(appealRoom.getId());
+                if(checkBox.isChecked()){
+                    updateappeal.setStatus("Accepted");
+                } else {
+                    updateappeal.setStatus("Rejected");
+                }
                 editAppealViewModel.update(updateappeal);
             } else if(imageView.getDrawable() != null && uriImage != null){
                 image = uriImage.toString();
@@ -98,7 +115,14 @@ public class EditAppealActivity extends AppCompatActivity {
                 updateappeal.setAppealTitle(titleofappeal);
                 updateappeal.setAppealDescription(descriptionofappeal);
                 updateappeal.setImage(image);
+                String appealAddress = AddressAppeal.getText().toString();
+                updateappeal.setAddress(appealAddress);
                 updateappeal.setId(appealRoom.getId());
+                if(checkBox.isChecked()){
+                    updateappeal.setStatus("Accepted");
+                } else {
+                    updateappeal.setStatus("Rejected");
+                }
                 editAppealViewModel.update(updateappeal);
             } else if (imageView.getDrawable() == null && uriImage != null){
                 image = uriImage.toString();
@@ -106,14 +130,28 @@ public class EditAppealActivity extends AppCompatActivity {
                 updateappeal.setAppealTitle(titleofappeal);
                 updateappeal.setAppealDescription(descriptionofappeal);
                 updateappeal.setImage(image);
+                String appealAddress = AddressAppeal.getText().toString();
+                updateappeal.setAddress(appealAddress);
                 updateappeal.setId(appealRoom.getId());
+                if(checkBox.isChecked()){
+                    updateappeal.setStatus("Accepted");
+                } else {
+                    updateappeal.setStatus("Rejected");
+                }
                 editAppealViewModel.update(updateappeal);
             } else {
                 Appeal updateappeal = new Appeal();
                 updateappeal.setAppealTitle(titleofappeal);
                 updateappeal.setAppealDescription(descriptionofappeal);
                 updateappeal.setImage(image);
+                String appealAddress = AddressAppeal.getText().toString();
+                updateappeal.setAddress(appealAddress);
                 updateappeal.setId(appealRoom.getId());
+                if(checkBox.isChecked()){
+                    updateappeal.setStatus("Accepted");
+                } else {
+                    updateappeal.setStatus("Rejected");
+                }
                 editAppealViewModel.update(updateappeal);
             }
             Toast.makeText(getApplicationContext(),"Appeal updated", Toast.LENGTH_SHORT).show();

@@ -39,12 +39,22 @@
 
         </TextView>
 
+        <TextView
+            android:id="@+id/text_view_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_address"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:text="Status">
+
+        </TextView>
+
         <ImageView
             android:id="@+id/imageViewList"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/text_view_address">
+            android:layout_below="@id/text_view_status">
         </ImageView>
 
     </RelativeLayout>
