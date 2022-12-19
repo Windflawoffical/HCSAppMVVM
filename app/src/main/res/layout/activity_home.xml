@@ -8,21 +8,11 @@
         name="Homeviewmodel"
         type="com.example.hcsappmvvm.viewmodel.HomeViewModel" />
   </data>
+
   <androidx.constraintlayout.widget.ConstraintLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:background="@color/signupColor">
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="308dp"
-        android:layout_height="229dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:mipmap/sym_def_app_icon" />
 
     <Button
         android:id="@+id/addappeal"
@@ -36,11 +26,12 @@
         android:onClick="@{(view) -> Homeviewmodel.onAddAppealButtonClick(view)}"
         android:padding="10dp"
         android:textColorHint="@color/white"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/checkappeals"
         android:layout_width="0dp"
@@ -53,11 +44,12 @@
         android:onClick="@{(view) -> Homeviewmodel.onCheckAppealsButtonClick(view)}"
         android:padding="10dp"
         android:textColorHint="@color/white"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/ban"
         android:layout_width="0dp"
@@ -70,12 +62,37 @@
         android:onClick="@{(view) -> Homeviewmodel.onAddModerButtonClick(view)}"
         android:padding="10dp"
         android:textColorHint="@color/white"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone">
-    </Button>
+        app:layout_constraintTop_toTopOf="parent"></Button>
+
+    <TextView
+        android:id="@+id/first_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="TextView"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/last_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="TextView"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/first_name" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

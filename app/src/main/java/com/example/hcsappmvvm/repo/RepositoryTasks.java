@@ -14,4 +14,6 @@ public interface RepositoryTasks {
     <T extends Appeal> LiveData<List<Appeal>> getAllAppeals();
     AppealRoom getAppealById(int id);
 
+
+
 }

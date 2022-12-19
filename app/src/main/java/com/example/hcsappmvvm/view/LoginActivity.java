@@ -31,6 +31,10 @@ public class LoginActivity extends AppCompatActivity implements AuthListener {
             Intent intent = new Intent(this, LoginForStaff.class);
             startActivity(intent);
         });
+        loginBinding.VK.setOnClickListener(view -> {
+            Intent intent = new Intent(this, OAuth_VK.class);
+            startActivity(intent);
+        });
     }
 
 

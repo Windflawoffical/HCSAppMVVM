@@ -16,6 +16,9 @@ android {
         // DaData API Key
         buildConfigField "String", "DADATA_API_KEY", "\"86ccfe5484112b04f1472f16c5da3e606517964a\""
 
+        //CLIENT_ID(VK)
+        buildConfigField "String", "CLIENT_ID", "\"51507331\""
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
