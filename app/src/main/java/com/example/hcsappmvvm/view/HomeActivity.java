@@ -37,22 +37,32 @@ public class HomeActivity extends AppCompatActivity implements HomeListener {
         String whoscome = intent.getStringExtra("Who's come");
         String prishlo = intent.getStringExtra("User");
         VkResponse user = new Gson().fromJson(prishlo, VkResponse.class);
-        Log.e("NEED TO CHECK USER", "USER FIRST_NAME = " + user.response.firstname);
+        //Log.e("NEED TO CHECK USER", "USER FIRST_NAME = " + user.response.firstname);
         if(whoscome.equals("User")) {
             homeBinding.addappeal.setVisibility(View.VISIBLE);
-            //homeBinding.checkappeals.setVisibility(View.GONE);
+            homeBinding.checkappeals.setVisibility(View.VISIBLE);
             //homeBinding.ban.setVisibility(View.GONE);
-            homeBinding.firstName.setText(user.response.firstname);
+            if(user != null){
+                homeBinding.firstName.setText(user.response.firstname);
 
-            homeBinding.lastName.setText(user.response.lastname);
+                homeBinding.lastName.setText(user.response.lastname);
+            } else {
+                homeBinding.firstName.setText("Simple");
+                homeBinding.lastName.setText("User");
+            }
+
         } else if (whoscome.equals("Moderator")) {
             //homeBinding.addappeal.setVisibility(View.GONE);
             homeBinding.checkappeals.setVisibility(View.VISIBLE);
             //homeBinding.ban.setVisibility(View.GONE);
+            homeBinding.firstName.setText("Main");
+            homeBinding.lastName.setText("Moderator");
         } else if (whoscome.equals("Administrator")) {
             //homeBinding.addappeal.setVisibility(View.GONE);
             //homeBinding.checkappeals.setVisibility(View.GONE);
             homeBinding.ban.setVisibility(View.VISIBLE);
+            homeBinding.firstName.setText("Main");
+            homeBinding.lastName.setText("Administrator");
         }
 
     }
