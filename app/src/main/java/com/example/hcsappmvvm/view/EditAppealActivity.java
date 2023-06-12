@@ -87,7 +87,7 @@ public class EditAppealActivity extends AppCompatActivity {
         Button deletebtn = findViewById(R.id.deleteimage);
         deletebtn.setOnClickListener(view -> imageView.setImageDrawable(null));
 
-        confirmeditbtn.setOnClickListener(view -> {
+        /*confirmeditbtn.setOnClickListener(view -> {
             String titleofappeal = titletextview.getText().toString();
             String descriptionofappeal = descriptiontextview.getText().toString();
             if(titleofappeal.trim().isEmpty() || descriptionofappeal.trim().isEmpty()){
@@ -156,7 +156,7 @@ public class EditAppealActivity extends AppCompatActivity {
             }
             Toast.makeText(getApplicationContext(),"Appeal updated", Toast.LENGTH_SHORT).show();
             finish();
-        });
+        });*/
 
 
     }

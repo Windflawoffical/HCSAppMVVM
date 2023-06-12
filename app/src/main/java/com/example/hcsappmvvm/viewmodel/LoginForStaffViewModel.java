@@ -24,7 +24,5 @@ public class LoginForStaffViewModel extends ViewModel {
         } else if (ID.equals("Admin888") && password.length() > 5) {
             authStaffListener.onSuccessAdministator();
         }
-        //failure
-        authStaffListener.onFailure("Invalid ID or password");
     }
 }

@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.hcsappmvvm.R;
+import com.google.gson.Gson;
 
 public class AddNewModer extends AppCompatActivity {
 
@@ -21,7 +23,10 @@ public class AddNewModer extends AppCompatActivity {
         EditText editText = findViewById(R.id.IDForNewModer);
 
         button.setOnClickListener((view -> {
+            Toast.makeText(this, "Id for new moderator set successfully", Toast.LENGTH_SHORT).show();
+
             Intent intent = new Intent(this, HomeActivity.class);
+            intent.putExtra("Who's come", "Administrator");
             startActivity(intent);
         }));
 

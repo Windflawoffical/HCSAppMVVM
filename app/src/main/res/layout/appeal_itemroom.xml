@@ -43,7 +43,7 @@
             android:id="@+id/text_view_status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/text_view_address"
+            android:layout_below="@id/imageViewList"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:text="Status">
 
@@ -53,8 +53,11 @@
             android:id="@+id/imageViewList"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/text_view_status">
+            android:layout_below="@id/text_view_address"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="122dp">
+
         </ImageView>
 
     </RelativeLayout>

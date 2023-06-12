@@ -15,6 +15,7 @@ import com.example.hcsappmvvm.R;
 import com.example.hcsappmvvm.databinding.ActivityHomeBinding;
 import com.example.hcsappmvvm.interfaces.HomeListener;
 import com.example.hcsappmvvm.network.VK.VkResponse;
+import com.example.hcsappmvvm.view.adapter.AppealsList;
 import com.example.hcsappmvvm.viewmodel.HomeViewModel;
 import com.google.gson.Gson;
 
@@ -76,7 +77,7 @@ public class HomeActivity extends AppCompatActivity implements HomeListener {
 
     @Override
     public void onCheckAppeals() {
-        Intent oncheckappealsintent = new Intent(this, AppealsActivity.class);
+        Intent oncheckappealsintent = new Intent(this, AppealsList.class);
         startActivity(oncheckappealsintent);
     }
 

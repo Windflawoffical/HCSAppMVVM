@@ -10,20 +10,20 @@ import com.example.hcsappmvvm.model.Appeal;
 public class AppealRoom extends Appeal{
     @PrimaryKey(autoGenerate = true)
     private int id;
-    @ColumnInfo(name = "title")
-    public String Title;
-    @ColumnInfo(name = "description")
-    public String Description;
-    @ColumnInfo(name = "image")
+    @ColumnInfo(name = "appealtitle")
+    public String AppealTitle;
+    @ColumnInfo(name = "appealdescription")
+    public String AppealDescription;
+    @ColumnInfo(name = "appealimage")
     public String image;
-    @ColumnInfo(name = "address")
-    public String address;
-    @ColumnInfo(name = "status")
+    @ColumnInfo(name = "appealaddress")
+    public String AppealAddress;
+    @ColumnInfo(name = "appealstatus")
     public String status;
 
-    public AppealRoom(String title, String description, String image,String address, String status) {
-        this.Title = title;
-        this.Description = description;
+    public AppealRoom(String AppealTitle, String AppealDescription, String image,String address, String status) {
+        this.AppealTitle = AppealTitle;
+        this.AppealDescription = AppealDescription;
         this.image = image;
         this.address = address;
         this.status = status;
@@ -32,12 +32,20 @@ public class AppealRoom extends Appeal{
     public AppealRoom() {
     }
 
-    public void setTitle(String title) {
-        this.Title = title;
+    public String getAppealTitle() {
+        return AppealTitle;
     }
 
-    public void setDescription(String description) {
-        this.Description = description;
+    public void setAppealTitle(String appealTitle) {
+        AppealTitle = appealTitle;
+    }
+
+    public String getAppealDescription() {
+        return AppealDescription;
+    }
+
+    public void setAppealDescription(String appealDescription) {
+        AppealDescription = appealDescription;
     }
 
     public void setId(int id) {
@@ -48,13 +56,6 @@ public class AppealRoom extends Appeal{
         return id;
     }
 
-    public String getTitle() {
-        return Title;
-    }
-
-    public String getDescription() {
-        return Description;
-    }
 
     public String getImage() {
         return image;
@@ -86,9 +87,8 @@ public class AppealRoom extends Appeal{
         AppealRoom appealRoom = new AppealRoom();
 
         appealRoom.setId(appeal.getId());
-        appealRoom.setTitle(appeal.getAppealTitle());
-        appealRoom.setDescription(appeal.getAppealDescription());
-        appealRoom.setImage(appeal.getImage());
+        appealRoom.setTitle(appeal.getTitle());
+        appealRoom.setDescription(appeal.getDescription());
         appealRoom.setAddress(appeal.getAddress());
         appealRoom.setStatus(appeal.getStatus());
 

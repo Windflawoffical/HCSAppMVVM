@@ -4,45 +4,20 @@ import java.util.List;
 
 public class Appeal {
     private int id;
-    public String AppealTitle;
-    public String AppealDescription;
-    public String image;
+    public String title;
+    public String description;
     public String address;
     public String status;
 
-    public Appeal(String appealTitle, String appealDescription,String image, String address,String status) {
-        this.AppealTitle = appealTitle;
-        this.AppealDescription = appealDescription;
-        this.image = image;
+    public Appeal(String title, String description,String image, String address,String status) {
+        this.title = title;
+        this.description = description;
         this.address = address;
         this.status = status;
     }
 
+    public Appeal(){
 
-    public Appeal() {
-    }
-
-    public String getAppealTitle() {
-        return AppealTitle;
-    }
-
-    public void setAppealTitle(String appealTitle) {
-        this.AppealTitle = appealTitle;
-    }
-
-    public String getAppealDescription() {
-        return AppealDescription;
-    }
-    public void setAppealDescription(String appealDescription) {
-        this.AppealDescription = appealDescription;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public int getId() {
@@ -51,6 +26,22 @@ public class Appeal {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getAddress() {

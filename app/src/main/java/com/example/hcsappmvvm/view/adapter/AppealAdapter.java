@@ -1,10 +1,8 @@
 package com.example.hcsappmvvm.view.adapter;
 
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,42 +10,64 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hcsappmvvm.R;
 import com.example.hcsappmvvm.Room.AppealRoom;
+import com.example.hcsappmvvm.model.Appeal;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AppealAdapter extends RecyclerView.Adapter<AppealAdapter.AppealHolder> {
 
+    //For Room
     private List<AppealRoom> appealRooms = new ArrayList<>();
+    //For mysql
+    private List<Appeal> appeals = new ArrayList<>();
     private onItemClickListener listener;
+
+    //For mysql
+    public AppealAdapter(List<Appeal> appealList){
+        this.appeals = appealList;
+    }
 
     @NonNull
     @Override
     public AppealHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.appeal_item, parent, false);
+                .inflate(R.layout.appeal_itemmysql, parent, false);
         return new AppealHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull AppealHolder holder, int position) {
+        //For mysql
+        Appeal appeal = appeals.get(position);
+        holder.textViewTitle.setText(appeal.getTitle());
+        holder.textViewDescription.setText(appeal.getDescription());
+        holder.textViewAddress.setText(appeal.getAddress());
+
+
+        /*For room
         AppealRoom currentAppeal = appealRooms.get(position);
         holder.textViewTitle.setText(currentAppeal.getTitle());
         holder.textViewDescription.setText(currentAppeal.getDescription());
-        if(currentAppeal.getImage() != null){
-            holder.imageView.setImageURI(Uri.parse(currentAppeal.getImage()));
-        }
         holder.textViewAddress.setText(currentAppeal.getAddress());
         if(currentAppeal.getStatus() != null){
             holder.textViewStatus.setText(currentAppeal.getStatus());
         } else {
             holder.textViewStatus.setText(null);
-        }
+        }*/
+
+        //TODO: Images
+        /*if(currentAppeal.getImage() != null){
+            holder.imageView.setImageURI(Uri.parse(currentAppeal.getImage()));
+        }*/
     }
 
     @Override
     public int getItemCount() {
-        return appealRooms.size();
+        /*For Room
+        return appealRooms.size();*/
+        //For mysql
+        return appeals.size();
     }
 
     public void setAppealRooms(List<AppealRoom> appealRooms) {
@@ -63,16 +83,20 @@ public class AppealAdapter extends RecyclerView.Adapter<AppealAdapter.AppealHold
         private TextView textViewTitle;
         private TextView textViewDescription;
         private TextView textViewAddress;
-        private TextView textViewStatus;
-        private ImageView imageView;
+        //for Room
+        //private TextView textViewStatus;
+        //TODO: Images
+        //private ImageView imageView;
 
         public AppealHolder(View view) {
             super(view);
             textViewTitle = view.findViewById(R.id.text_view_title);
             textViewDescription = view.findViewById(R.id.text_view_description);
             textViewAddress = view.findViewById(R.id.text_view_address);
-            textViewStatus = view.findViewById(R.id.text_view_status);
-            imageView = view.findViewById(R.id.imageViewList);
+            //for Room
+            //textViewStatus = view.findViewById(R.id.text_view_status);
+            //TODO: Images
+            //imageView = view.findViewById(R.id.imageViewList);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {

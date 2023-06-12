@@ -45,26 +45,11 @@
         android:textColorHint="@color/white"
         android:layout_below="@id/AppealDescription"/>
 
-    <ImageView
-        android:id="@+id/Image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_below="@id/AppealAddress"
-        android:layout_centerInParent="true"></ImageView>
-
-    <Button
-        android:id="@+id/addimage"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="Добавить фотографию"
-        android:layout_below="@+id/Image"
-        android:layout_centerInParent="true"/>
-
     <Button
         android:id="@+id/confirmBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Сохранить жалобу"
-        android:layout_below="@+id/addimage"/>
+        android:layout_below="@+id/AppealAddress"/>
 
 </RelativeLayout>

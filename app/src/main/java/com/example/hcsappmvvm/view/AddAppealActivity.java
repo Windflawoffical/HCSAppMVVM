@@ -1,17 +1,13 @@
 package com.example.hcsappmvvm.view;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -21,12 +17,18 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.hcsappmvvm.R;
-import com.example.hcsappmvvm.Room.AppealRoom;
 import com.example.hcsappmvvm.model.Appeal;
+import com.example.hcsappmvvm.network.retrofit.AppealAPI;
+import com.example.hcsappmvvm.network.retrofit.RetrofitService;
 import com.example.hcsappmvvm.viewmodel.AddAppealViewModel;
-import com.example.hcsappmvvm.viewmodel.AppealsViewModel;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class AddAppealActivity extends AppCompatActivity {
@@ -51,14 +53,14 @@ public class AddAppealActivity extends AppCompatActivity {
         editTextTitle = findViewById(R.id.TitleOfAppeal);
         editTextDescription = findViewById(R.id.AppealDescription);
         mAutoCompleteTextView = findViewById(R.id.AppealAddress);
-        imageView = findViewById(R.id.Image);
 
         Button savebutton = findViewById(R.id.confirmBtn);
-        Button saveimage = findViewById(R.id.addimage);
 
         addAppealViewModel = new ViewModelProvider(this).get(AddAppealViewModel.class);
 
-
+        //TODO: Реализовать функцию добавления изображения в БД
+        /*imageView = findViewById(R.id.Image);
+        Button saveimage = findViewById(R.id.addimage);
         ActivityResultLauncher<String[]> getContentimage = getActivityResultRegistry().
                 register("key", new ActivityResultContracts.OpenDocument(), result -> {
             getContentResolver().takePersistableUriPermission(result, Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -66,6 +68,8 @@ public class AddAppealActivity extends AppCompatActivity {
             imageView.setImageURI(result);
             uriImage = result;
         });
+        saveimage.setOnClickListener(view -> getContentimage.launch(new String[]{"image/*"}));
+        */
 
         mAutoCompleteTextView.addTextChangedListener(new TextWatcher() {
             @Override
@@ -89,17 +93,39 @@ public class AddAppealActivity extends AppCompatActivity {
             }
         });
 
-        saveimage.setOnClickListener(view -> getContentimage.launch(new String[]{"image/*"}));
+        RetrofitService retrofitService = new RetrofitService();
+        AppealAPI appealAPI = retrofitService.getRetrofit().create(AppealAPI.class);
 
         savebutton.setOnClickListener(view -> {
             String title = editTextTitle.getText().toString();
             String description = editTextDescription.getText().toString();
             String appealAddress = mAutoCompleteTextView.getText().toString();
+            Appeal appeal = new Appeal();
+            appeal.setTitle(title);
+            appeal.setDescription(description);
+            appeal.setAddress(appealAddress);
             if(title.trim().isEmpty() || description.trim().isEmpty() || appealAddress.trim().isEmpty()){
                 Toast.makeText(getApplicationContext(),"Please enter title, description and address", Toast.LENGTH_SHORT).show();
                 return;
             }
-            if(imageView.getDrawable() == null){
+            else {
+                appealAPI.saveAppeal(appeal).enqueue(new Callback<Appeal>() {
+                    @Override
+                    public void onResponse(Call<Appeal> call, Response<Appeal> response) {
+                        Toast.makeText(getApplicationContext(),"Appeal saved!", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Appeal> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),"Save failed!", Toast.LENGTH_SHORT).show();
+                        Logger.getLogger(AddAppealActivity.class.getName()).log(Level.SEVERE, "Error occurred: ", t);
+                    }
+                });
+            }
+            finish();
+
+            //TODO: Реализовать функцию добавления изображения в БД
+            /*if(imageView.getDrawable() == null){
                 Appeal appeal = new Appeal(title, description,null, appealAddress, null);
                 addAppealViewModel.insert(appeal);
             } else{
@@ -108,7 +134,7 @@ public class AddAppealActivity extends AppCompatActivity {
                 addAppealViewModel.insert(appeal);
             }
             Toast.makeText(getApplicationContext(),"Appeal saved", Toast.LENGTH_SHORT).show();
-            finish();
+            finish();*/
 
         });
     }

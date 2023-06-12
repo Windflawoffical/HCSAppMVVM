@@ -38,7 +38,7 @@ public class VkApiBase {
                         if(response.isSuccessful()){
                             //настроить логику получения данных из response
                             vkuser.setValue(response.body());
-                            Log.e("RESPONSE", "RESPONSE = " + response.body().response.firstname);
+                            Log.e("RESPONSE", "RESPONSE = " + CurrentUser.getInstance().access_token);
                         }
                     }
                     @Override
