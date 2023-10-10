@@ -41,7 +41,7 @@ public class HomeActivity extends AppCompatActivity implements HomeListener {
         //Log.e("NEED TO CHECK USER", "USER FIRST_NAME = " + user.response.firstname);
         if(whoscome.equals("User")) {
             homeBinding.addappeal.setVisibility(View.VISIBLE);
-            homeBinding.checkappeals.setVisibility(View.VISIBLE);
+            homeBinding.checkappeals.setVisibility(View.GONE);
             //homeBinding.ban.setVisibility(View.GONE);
             if(user != null){
                 homeBinding.firstName.setText(user.response.firstname);

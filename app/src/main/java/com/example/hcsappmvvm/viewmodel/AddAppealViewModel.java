@@ -28,6 +28,7 @@ public class AddAppealViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<String>> getAddressList(String address_prototype) {
-        return ServiceLocator.getInstance().getAnalysis().getAddressesFromPattern(address_prototype);
+        return ServiceLocator.getInstance()
+                .getAnalysis().getAddressesFromPattern(address_prototype);
     }
 }
