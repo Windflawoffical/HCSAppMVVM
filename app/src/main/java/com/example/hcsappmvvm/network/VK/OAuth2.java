@@ -51,6 +51,11 @@ public class OAuth2 {
                 view.loadUrl(urlString);
                 return true;
             }
+            @SuppressWarnings("deprecation")
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return false;
+            }
         };
     }
 }

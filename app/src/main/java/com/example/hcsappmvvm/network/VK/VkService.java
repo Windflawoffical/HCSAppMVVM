@@ -10,5 +10,6 @@ import retrofit2.http.QueryMap;
 public interface VkService {
     @GET("account.getProfileInfo")
     Call<VkResponse> getPersonInfo(@Query("v") String version,
-                                   @Query("access_token") String token);
+                                   @Query("access_token") String token,
+                                    @Query("user_id") String userId);
 }

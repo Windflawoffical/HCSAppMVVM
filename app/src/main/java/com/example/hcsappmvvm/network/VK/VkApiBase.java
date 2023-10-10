@@ -2,13 +2,12 @@ package com.example.hcsappmvvm.network.VK;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.hcsappmvvm.BuildConfig;
 import com.example.hcsappmvvm.CurrentUser;
 
-import java.io.File;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,7 +16,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class VkApiBase {
-    private VkService vkService;
+    private final VkService vkService;
     public VkApiBase(){
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
@@ -29,20 +28,23 @@ public class VkApiBase {
     public LiveData<VkResponse> getPersonInfo(){
         MutableLiveData<VkResponse> vkuser = new MutableLiveData<>();
         vkService.getPersonInfo(
-                "5.131&",
-                CurrentUser.getInstance().access_token
+                "5.154#",
+                CurrentUser.getInstance().access_token,
+                CurrentUser.getInstance().userId
         ).enqueue(
                 new Callback<VkResponse>() {
                     @Override
-                    public void onResponse(Call<VkResponse> call, Response<VkResponse> response) {
+                    public void onResponse(@NonNull Call<VkResponse> call, @NonNull Response<VkResponse> response) {
                         if(response.isSuccessful()){
                             //настроить логику получения данных из response
                             vkuser.setValue(response.body());
-                            Log.e("RESPONSE", "RESPONSE = " + response.body().response.firstname);
+//                            if (response.body() != null) {
+//                                Log.e("RESPONSE", "RESPONSE = " + response.body().response.firstname);
+//                            }
                         }
                     }
                     @Override
-                    public void onFailure(Call<VkResponse> call, Throwable t) {
+                    public void onFailure(@NonNull Call<VkResponse> call, @NonNull Throwable t) {
                         t.printStackTrace();
                     }
                 }

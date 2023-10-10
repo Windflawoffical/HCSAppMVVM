@@ -22,6 +22,7 @@ public class OAuth_VK extends AppCompatActivity {
         OAuthViewModel oAuthViewModel = new ViewModelProvider(this).get(OAuthViewModel.class);
         CookieManager.getInstance().removeAllCookies(null);
         mbinding.webviewvk.clearCache(true);
+        mbinding.webviewvk.getSettings().setJavaScriptEnabled(true);
         mbinding.webviewvk.loadUrl(OAuth2.AUTH_URL);
         mbinding.webviewvk.setWebViewClient(oAuthViewModel.getClient(this));
     }

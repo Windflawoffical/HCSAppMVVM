@@ -45,7 +45,6 @@ public class HomeActivity extends AppCompatActivity implements HomeListener {
             //homeBinding.ban.setVisibility(View.GONE);
             if(user != null){
                 homeBinding.firstName.setText(user.response.firstname);
-
                 homeBinding.lastName.setText(user.response.lastname);
             } else {
                 homeBinding.firstName.setText("Simple");
